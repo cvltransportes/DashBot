@@ -2,7 +2,7 @@
 :root{
     --image_background_login:url('../assets/login_page.png');
     --image_background_pages:url('../assets/background_pages.png');
-    --font_primary: 'Chakra Petch',sans-serif;
+    --font_primary: 'Montserrat',sans-serif;
     --color_transparency_one:#7d9bab;
     --color_transparency_two:#506b7b;
     /* --color_transparency_three:#0b1011; */
@@ -28,28 +28,53 @@ body, html {
     padding: 0;
     font-family: var(--font_primary)
 }
-
-.section__header{
+.header__img__list{
+    margin: 1% 0 0 0;
+    width: 2.5%;
+    padding: 0;
+}
+.header__section{
+    margin: 0;
+    padding: 0;
     display: flex;
-    background-color: var(--color_transparency_three);
-    flex-wrap: wrap;
-    opacity: 0.8;
+    justify-content: center;
+}
+.header__title{
+    font-size: 3.5em;
+    color: var(--color_transparency_five);
 }
 
-.section__header__link{
+.header__modal__links{
+    display: none;
+    flex-direction: column;
+    background-color: var(--color_transparency_three);
+    width: 20%;
+    padding-bottom: 100%;
+    border-radius: 20px;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 20%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+
+}
+
+.header__modal__link{
     text-decoration: none;
     color: var(--color_transparency_eight);
-    padding: 1.5%;
+    padding: 8%;
     margin-left: 1%;
-    font-size: 1.25rem;
+    font-size: 2rem;
     font-weight: 400;
-    
-    
 }
-.section__header__link:hover{
+.sign__out{
+    margin-top: 80%;
+}
+.section__modal__link:hover{
     background-color: var(--color_transparency_four);
 }
-
 
 .homepage::before {
     content: ''; 
@@ -87,26 +112,31 @@ body, html {
 
 }
 
-.execution_content{
-    display: flex;
+.homepage__content__div__title{
     align-items: center;
     justify-content: center;
-    gap:1%;
-    flex-wrap: wrap;
+    text-align: center;
+    /* background-color: var(--color_transparency_three); */
+    opacity: 0.9;
+    border-radius: 100px;
+    padding: 2em;
+    /* border: 1px solid white; */
 }
 
 .homepage__content__title{
-    font-size: 3.5rem;
+    font-size: 5rem;
     font-weight: 600;
     color: var(--color_transparency_five);
-    margin: 5%;
+    margin: 5% 0 0 0;
+    
 }
 
-.execution__content__title{
-    font-size: 3.5rem;
+.homepage__content__subtitle{
+    margin: 0;
+    padding: 0;
+    font-size: 3rem;
     font-weight: 600;
-    color: var(--color_transparency_five);
-    margin: 5%;
+    color: #82a2b0;
 }
 
 .homepage__content__container{
@@ -122,33 +152,13 @@ body, html {
 
 }
 
-.execution_content_container{
-    display: flex;
-    gap: 30px;
-    background-color: var(--color_transparency_three);
-    opacity: 0.8;
-    margin: 2%;
-    padding: 6%;
-    border-radius: 10%;
-    flex: 0 0 auto;
-    border: 1px solid var(--color_transparency_six);
-    color: var(--color_transparency_five);
-    width: 100px; /* Fixed width */
-    height: 100px; /* Fixed height */
-    overflow: auto; /* Add scroll if content overflows */
-}
-
-.execution_content_container:hover{
-    background-color: var(--color_transparency_one);
-}
-
 .homepage__content__container__input{
     border-radius: 10px;
     padding: 10px;
     border: 1px solid var(--color_transparency_seven);
     opacity: 0.9;
     outline: none;
-    border: 2px solid black;
+    /* border: 2px solid black; */
 
 }
 
@@ -214,4 +224,39 @@ body, html {
     width: auto; /* Or specify a width if you want */
     color: var(--color_transparency_five); /* Example text color */
     padding: 10px; /* Example padding */
+}
+
+.execution_content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:1%;
+    flex-wrap: wrap;
+}
+
+.execution__content__title{
+    font-size: 3.5rem;
+    font-weight: 600;
+    color: var(--color_transparency_five);
+    margin: 5%;
+}
+
+.execution_content_container{
+    display: flex;
+    gap: 30px;
+    background-color: var(--color_transparency_three);
+    opacity: 0.8;
+    margin: 2%;
+    padding: 6%;
+    border-radius: 10%;
+    flex: 0 0 auto;
+    border: 1px solid var(--color_transparency_six);
+    color: var(--color_transparency_five);
+    width: 100px; /* Fixed width */
+    height: 100px; /* Fixed height */
+    overflow: auto; /* Add scroll if content overflows */
+}
+
+.execution_content_container:hover{
+    background-color: var(--color_transparency_one);
 }

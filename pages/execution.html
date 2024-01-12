@@ -8,21 +8,23 @@
 </head>
 <body>
     <header>
-        <section class="section__header">
-            <a class="section__header__link" href="./home.html">Home</a>
-            <a class="section__header__link" href="./dashboard.html">Dashboard</a>
-            <a class="section__header__link" href="./deploy.html">Deploy</a>
-            <a class="section__header__link" href="./monitoring.html">Monitoring</a>
-            <a class="section__header__link" href="./execution.html">Execution</a>
-            <a class="section__header__link sign__out" href="../index.html">Sign out</a>
+        <img id="header_icon" class="header__img__list"  src="../assets/list.png" alt="">
+        <section class="header__section">
+            <h1 class="header__title">
+                <strong>Execution</strong>
+            </h1>
         </section>
+        <div id="modal_menu" class="header__modal__links" >
+            <a class="header__modal__link" href="./home.html">Home</a>
+            <a class="header__modal__link" href="./dashboard.html">Dashboard</a>
+            <a class="header__modal__link" href="./deploy.html">Deploy</a>
+            <a class="header__modal__link" href="./monitoring.html">Monitoring</a>
+            <a class="header__modal__link" href="./execution.html">Execution</a>
+            <a class="header__modal__link sign__out" href="../index.html">Sign out</a>
+        </div>
     </header>
     <main class="homepage">
-        <h1 class="execution__content__title">
-            <strong>Execution</strong>
-        </h1>
         <section class="execution_content">
-
             <div id="myModal" class="modal">
                 <span id="closeModal" class="close">&times;</span>
                 <div class="modal-content">
@@ -41,8 +43,6 @@
                         <button class="modal-content-button">Schedule</button>
                         <button class="modal-content-button">Menu</button>
                     </div>
-
-
                 </div>
             </div>
 
@@ -56,9 +56,9 @@
             <div id="8" class="execution_content_container">Bot qualidade execution</div>
         </section>
     </main>
-    
     <script src="../scripts/execution.js"></script>
-    <footer class="rodape">© 2024 cvltransportes</footer>      
+    <footer class="rodape">© 2024 cvltransportes</footer>
+    <script src="../scripts/header.js"></script>     
 </body>
 
 </html>
