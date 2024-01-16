@@ -15,50 +15,58 @@
             </h1>
         </section>
         <div id="modal_menu" class="header__modal__links" >
-            <a class="header__modal__link" href="./home.html">Home</a>
-            <a class="header__modal__link" href="./dashboard.html">Dashboard</a>
-            <a class="header__modal__link" href="./deploy.html">Deploy</a>
-            <a class="header__modal__link" href="./monitoring.html">Monitoring</a>
-            <a class="header__modal__link" href="./execution.html">Execution</a>
-            <a class="header__modal__link sign__out" href="../index.html">Sign out</a>
+            <a class="header__modal__link header_modal_link_container" href="./home.html"><img class="header__img__menu header_modal_link_container" src="../assets/botao-de-inicio.png" alt="" />Home</a>
+            <a class="header__modal__link" href="./dashboard.html"><img class="header__img__menu header_modal_link_container" src="../assets/analise.png" alt="" />Dashboard</a>
+            <a class="header__modal__link" href="./deploy.html"><img class="header__img__menu header_modal_link_container" src="../assets/foguete.png" alt="" />Deploy</a>
+            <a class="header__modal__link" href="./monitoring.html"><img class="header__img__menu header_modal_link_container" src="../assets/monitoramento.png" alt="" />Monitoring</a>
+            <a class="header__modal__link" href="./execution.html"><img class="header__img__menu header_modal_link_container" src="../assets/servico.png" alt="" />Execution</a>
+            <a class="header__modal__link sign__out" href="../index.html"><img class="header__img__menu header_modal_link_container" src="../assets/sair.png" alt="" />Sign out</a>
         </div>
     </header>
     <main class="homepage">
+        <div id="loading">
+            <div class="loader"></div>
+        </div>
         <section class="execution_filter">
             <select class="execution_filter_select" name="" id="select_department">
                 <option value="todos">Todos</option>
-                <option value="qualidade">Qualidade</option>
-                <option value="financeiro">Financeiro</option>
-                <option value="trafego">Trafego</option>
-                <option value="operacional">Operacional</option>
             </select>
-            <input class="execution_filter_input" type="search" name="search_bot" id="search_bot">
-            <input class="execution_filter_input" type="submit" value="submit">
+            <form class="execution_filter_form" id="searchBotForm">
+                <input class="execution_filter_input" type="search" name="search_bot" id="search_bot" placeholder="Pesquisar bot">
+                <input class="execution_filter_input filter_input_submit" type="submit" value="Ok">
+            </form>
         </section>
         <section class="execution_content">
-            <div id="myModal" class="modal">
-                <span id="closeModal" class="close">&times;</span>
-                <div class="modal-content">
+            <div id="bot_details" class="execution-modal">
+                <span id="closeModal" class="execution-close-modal">&times;</span>
+                <div class="execution-modal-content">
                     <h2 id="bot_name">Bot qualidade execution</h2>
-                    <label for="modal-content-label-description">Description:</label>
+                    <label class="execution-modal-content-label" for="label">Descrição:</label>
                     <p id="bot_description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis labore quis dolor ea praesentium quos, explicabo eveniet, provident in aliquid aspernatur tempora delectus odit officia maiores neque, hic quam? Eligendi?</p>
-                    <label for="modal-content-label-department">Setor:</label>
+                    <label class="execution-modal-content-label" for="label">Setor:</label>
                     <p id="bot_department">Qualidade</p>
-                    <label for="modal-content-label-version">Versão:</label>
+                    <label class="execution-modal-content-label" for="label">Versão:</label>
                     <p id="bot_version">1.0.0</p>
-                    <label for="modal-content-label-user">Usuário:</label>
+                    <label class="execution-modal-content-label" for="label">Usuário:</label>
                     <p id="bot_user">botcvl</p>
-                    <div class="modal-content-buttons">
-                        <button class="modal-content-button">Start</button>
-                        <button class="modal-content-button">Finish</button>
-                        <button class="modal-content-button">Schedule</button>
-                        <button class="modal-content-button">Menu</button>
+                    <div class="execution-modal-content-buttons">
+                        <button class="execution-modal-content-button">Iniciar</button>
+                        <button class="execution-modal-content-button">Finalizar</button>
+                        <button class="execution-modal-content-button">Agendar</button>
+                        <button class="execution-modal-content-button">Menu</button>
+                    </div>
+                    <div class="execution-modal-content-bots-status">
+                        <h3>Status</h3>
+                        <div class="execution-modal-content-bots-status-table">
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
-    <script src="../scripts/execution.js"></script>
+    <script src="../scripts/loader.js"></script>
+    <script src="../scripts/execution_main.js"></script>
+    <script src="../scripts/execution_fetches.js"></script>
     <footer class="rodape">© 2024 cvltransportes</footer>
     <script src="../scripts/header.js"></script>     
 </body>
