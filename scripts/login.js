@@ -18,7 +18,7 @@ document.getElementById('signin-form').addEventListener('submit', function(event
             // Store the JWT for future requests
             sessionStorage.setItem('jwt', data.access_token);
             // Redirect to dashboard or appropriate page
-            window.location.href = '/pages/execution.html';
+            window.location.href = './pages/execution.html';
         } else {
             // Handle login failure
             alert('Invalid credentials');
