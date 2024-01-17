@@ -150,13 +150,13 @@
 
 }
 .execution-modal-content-bots-status-table{
-    border-radius: 5px;
     background-color:var(--color_transparency_five);
     height: 20em;
     border-collapse: collapse;
     overflow: auto;
 }
 .execution-modal-content-without-table{
+    
     font-size: 3em;
     font-weight: 600;
     color: var(--color_transparency_three);
@@ -164,6 +164,7 @@
     align-items: center;
     justify-content: center;
 }
+
 table,th, td {
     display: flex;
     height: 3em;
@@ -172,24 +173,28 @@ table,th, td {
     align-items: start;
 }
 th,td{
-    padding: 3px;
-    border: 1px solid var(--color_transparency_three);
+    padding: 2px;
+    height: 2em;
+    border: 0.1px solid var(--color_transparency_three);
     justify-content: center;
     align-items: center;
     text-align: center;
+
 }
 table{
     border-radius: 5px;
     width: 100%;
+    height: 100%;
     border-collapse: collapse;
 }
 th{
-    background-color: var(--color_transparency_one);
-
+    background-color: #ced8dd;
+    width: 10em;
 }
 
 tr{
     color: var(--color_transparency_twelve);
+
 
 }
 .execution-table-col{

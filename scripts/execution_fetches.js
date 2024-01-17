@@ -1,5 +1,5 @@
 function buildBotsElements(data){
-    var botInfo = JSON.parse(data)
+    var botInfo = data//JSON.parse(data)
     let previousElement =  document.querySelectorAll('.execution_content_container')
     if (previousElement){
         previousElement.forEach(item=>item.remove())
@@ -26,7 +26,7 @@ function buildBotsElements(data){
     });
 }
 function buildBotsDepartmentsElements(data){
-    var botsDepartments = JSON.parse(data)
+    var botsDepartments = data//JSON.parse(data)
     var selectDepartments = document.getElementById("select_department");
     for (let key in botsDepartments.department){
         optionDepartment = document.createElement('option')
@@ -42,6 +42,8 @@ function getBotsDepartments(){
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + sessionStorage.getItem('jwt'),
+            'ngrok-skip-browser-warning': '69420'
         },
     })
     .then(response => response.json())
@@ -64,6 +66,8 @@ function searchBot(search){
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + sessionStorage.getItem('jwt'),
+            'ngrok-skip-browser-warning': '69420'
         },
     })
     .then(response => response.json())
@@ -98,6 +102,8 @@ function getBotsInfo(bot_name){
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + sessionStorage.getItem('jwt'),
+            'ngrok-skip-browser-warning': '69420'
         },
     })
     .then(response => response.json())
@@ -117,6 +123,8 @@ function getBotsName(department){
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + sessionStorage.getItem('jwt'),
+            'ngrok-skip-browser-warning': '69420'
         },
     })
     .then(response => response.json())
@@ -138,13 +146,15 @@ function getBotsTableActivities(bot_name){
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + sessionStorage.getItem('jwt'),
+            'ngrok-skip-browser-warning': '69420'
         },
     })
     .then(response => response.json())
     .then(data => {
         if(data){
-            var botStatus = JSON.parse(data)
-            createTable(botStatus)
+            //var botStatus = JSON.parse(data)
+            createTable(data)
             botDetails.style.display = "block";
         }
         else{
@@ -216,14 +226,4 @@ function createTable(data) {
     // Append the table to the body or another element in the page
     executionTable.appendChild(table);  // or another container element
 }
-getBotsName()
-    .then(()=>{
-        return getBotsDepartments()
-    })
-    .then(()=>{
-        console.log('Bots loaded')
-    })
-    .catch(error=>{
-        console.log('An error occurred: ',error)
-    })
 

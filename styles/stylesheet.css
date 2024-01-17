@@ -213,3 +213,19 @@ body, html {
     color: var(--color_transparency_five); /* Example text color */
     padding: 10px; /* Example padding */
 }
+
+::-webkit-scrollbar {
+    width: 0.3em;
+    height: 0.3em;
+  }
+::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 15px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 15px;
+}

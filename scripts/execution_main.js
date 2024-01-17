@@ -1,4 +1,3 @@
-const baseUrlApi = 'http://127.0.0.1:5000/api'
 const botDetails = document.getElementById("bot_details");
 const closeBotDetails = document.getElementById("closeModal");
 
@@ -59,5 +58,19 @@ document.addEventListener('DOMContentLoaded', function () {
     
         // If you need to perform further actions like fetching data, you can do so here
     });
+    
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    getBotsName()
+    .then(()=>{
+        return getBotsDepartments()
+    })
+    .then(()=>{
+        console.log('Bots loaded')
+    })
+    .catch(error=>{
+        console.log('An error occurred: ',error)
+    })
     
 });

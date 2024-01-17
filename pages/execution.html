@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dashbot</title>
     <link rel="stylesheet" href="../styles/stylesheet.css">
 </head>
 <body>
@@ -11,7 +11,7 @@
         <section class="header__section">
             <img id="header_icon" class="header__img__list"  src="../assets/list.png" alt="">
             <h1 class="header__title">
-                <strong>Execution</strong>
+                <strong>Execução</strong>
             </h1>
         </section>
         <div id="modal_menu" class="header__modal__links" >
@@ -45,10 +45,6 @@
                     <p id="bot_description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis labore quis dolor ea praesentium quos, explicabo eveniet, provident in aliquid aspernatur tempora delectus odit officia maiores neque, hic quam? Eligendi?</p>
                     <label class="execution-modal-content-label" for="label">Setor:</label>
                     <p id="bot_department">Qualidade</p>
-                    <label class="execution-modal-content-label" for="label">Versão:</label>
-                    <p id="bot_version">1.0.0</p>
-                    <label class="execution-modal-content-label" for="label">Usuário:</label>
-                    <p id="bot_user">botcvl</p>
                     <div class="execution-modal-content-buttons">
                         <button class="execution-modal-content-button">Iniciar</button>
                         <button class="execution-modal-content-button">Finalizar</button>
@@ -56,7 +52,7 @@
                         <button class="execution-modal-content-button">Menu</button>
                     </div>
                     <div class="execution-modal-content-bots-status">
-                        <h3>Status</h3>
+                        <h3>Atividades Recentes</h3>
                         <div class="execution-modal-content-bots-status-table">
                         </div>
                     </div>
@@ -64,6 +60,7 @@
             </div>
         </section>
     </main>
+    <script src="../scripts/session.js"></script>
     <script src="../scripts/loader.js"></script>
     <script src="../scripts/execution_main.js"></script>
     <script src="../scripts/execution_fetches.js"></script>
