@@ -1,3 +1,36 @@
+const headers= {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + sessionStorage.getItem('jwt'),
+    'ngrok-skip-browser-warning': '69420'
+}
+
+function fetchModel(method,endpoint,func){
+    return fetch(`${baseUrlApi}/${endpoint}`, {
+        method: method,
+        headers: headers,
+    })
+    .then(response => {
+        if (response.ok){
+            return response.json()
+        }
+       else if (response.status===401){
+            alert('!')
+            window.location.href = '../index.html';
+       }
+       else{
+        throw new Error('Response not okay!');
+       }
+    })
+    .then(data => {
+        if (data){
+            func(data)
+        }
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
+
 function buildBotsElements(data){
     var botInfo = data//JSON.parse(data)
     let previousElement =  document.querySelectorAll('.execution_content_container')
@@ -25,6 +58,7 @@ function buildBotsElements(data){
         div.addEventListener('click', openBotDetails);
     });
 }
+
 function buildBotsDepartmentsElements(data){
     var botsDepartments = data//JSON.parse(data)
     var selectDepartments = document.getElementById("select_department");
@@ -36,141 +70,54 @@ function buildBotsDepartmentsElements(data){
     }
 }
 
-function getBotsDepartments(){
-    // Post the message to the API
-    return fetch(`${baseUrlApi}/botsDepartments`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + sessionStorage.getItem('jwt'),
-            'ngrok-skip-browser-warning': '69420'
-        },
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data){
-            buildBotsDepartmentsElements(data)
-            
-        }
+function createRefreshActivitiesElement(bot_name){
+    var statusHeader = document.getElementById('status_header')
 
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-        
-    });
-}
-
-function searchBot(search){
-    // Post the message to the API
-    return fetch(`${baseUrlApi}/botsSearch/${search}`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + sessionStorage.getItem('jwt'),
-            'ngrok-skip-browser-warning': '69420'
-        },
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data){
-            buildBotsElements(data)
-        }
-
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-        
-    });
+    refreshInput = document.createElement('input')
+    refreshInput.className = 'execution-refresh-details'
+    refreshInput.id = bot_name
+    statusHeader.appendChild(refreshInput)
+    refreshInput.addEventListener('click',refreshBotsActivities)
 }
 
 function buildBotsDescriptionElements(data){
-    var botInfo = JSON.parse(data)
+    var botInfo = data//JSON.parse(data)
     var botName = document.getElementById("bot_name");
     var botDescription = document.getElementById("bot_description");
     var botDepartment = document.getElementById("bot_department");
-    var botVersion = document.getElementById("bot_version");
-    var botUser = document.getElementById("bot_user");
+
+    createRefreshActivitiesElement(botInfo.bot_name[0])
+
     botName.innerText = botInfo.bot_name[0].split('_').join(" ")
     botDescription.innerText = botInfo.bot_description[0]
     botDepartment.innerText = botInfo.bot_name[0].split('_')[1]
     botDetails.style.display = "block";
 }
 
-function getBotsInfo(bot_name){
-    // Post the message to the API
-    return fetch(`${baseUrlApi}/botsInfo/${bot_name}`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + sessionStorage.getItem('jwt'),
-            'ngrok-skip-browser-warning': '69420'
-        },
-    })
-    .then(response => response.json())
-    .then(data => {
-        buildBotsDescriptionElements(data)
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-        
-    });
+function deleteRefreshElements(){
+    var lastRefresh = document.querySelectorAll('.execution-refresh-details')
+    console.log('Refresf elements', lastRefresh)
+    lastRefresh.forEach(item=>item.remove())
+
 }
 
-
-function getBotsName(department){
-    // Post the message to the API
-    return fetch(`${baseUrlApi}/botsName/${department}`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + sessionStorage.getItem('jwt'),
-            'ngrok-skip-browser-warning': '69420'
-        },
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data){
-            buildBotsElements(data)
-        }
-        
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-        
-    });
+function refreshBotsActivities(event){
+    var refreshInput = event.target;
+    //var refreshInput = document.querySelector('execution-refresh-details')
+    removeLastTable()
+    return getBotsTableActivities(refreshInput.id);
 }
 
-function getBotsTableActivities(bot_name){
-    showLoader();
-    return fetch(`${baseUrlApi}/botsStatus/${bot_name}`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + sessionStorage.getItem('jwt'),
-            'ngrok-skip-browser-warning': '69420'
-        },
-    })
-    .then(response => response.json())
-    .then(data => {
-        if(data){
-            //var botStatus = JSON.parse(data)
-            createTable(data)
-            botDetails.style.display = "block";
-        }
-        else{
-            showEmptyTable()
-        }
-
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-        
-    })
-    .finally(() => {
-        // Hide the loader whether the fetch succeeded or failed
-        hideLoader();
-    });
+function buildTableActivities(data){
+    if(data){
+        createTable(data)
+        botDetails.style.display = "block";
+    }
+    else{
+        showEmptyTable()
+    }
 }
+
 function showEmptyTable(){
     var executionTable = document.querySelector('.execution-modal-content-bots-status-table')
     warning = document.createElement('h3')
@@ -190,9 +137,46 @@ function removeLastTable(){
     }
     
 }
+
+function sortColumnsBotsTable(jsonObject){
+    listKeys = [
+        'nome do bot',
+        'nome tarefa',
+        'status da tarefa',
+        'inicio da tarefa',
+        'final da tarefa',
+        'duração da tarefa',
+        'erro',
+        'localização no computador',
+        'resultado da tarefa', 
+        'usuario',
+        'versão do bot'
+    ]
+    let sortedObject = {};
+
+    listKeys.forEach(key => {
+        sortedObject[key] = jsonObject[key];
+    });
+
+    console.log(sortedObject);
+    return sortedObject
+}
+function formatUTCDate(timestamp) {
+    var date = new Date(timestamp);
+    var year = date.getUTCFullYear();
+    var month = String(date.getUTCMonth() + 1).padStart(2, '0'); // months are zero-indexed
+    var day = String(date.getUTCDate()).padStart(2, '0');
+    var hours = String(date.getUTCHours()).padStart(2, '0');
+    var minutes = String(date.getUTCMinutes()).padStart(2, '0');
+    var seconds = String(date.getUTCSeconds()).padStart(2, '0');
+
+    return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+}
+
 // Function to create a table
 function createTable(data) {
     console.log(data)
+    data = sortColumnsBotsTable(data)
     var executionTable = document.querySelector('.execution-modal-content-bots-status-table')
     // Create a table element
     let table = document.createElement('table');
@@ -215,7 +199,7 @@ function createTable(data) {
             let td = document.createElement('td');
             td.textContent = data[col][row];
             if (col ==='inicio da tarefa' || col ==='final da tarefa'){
-                td.textContent = new Date(data[col][row]).toISOString();
+                td.textContent = (data[col][row]>0)?formatUTCDate(data[col][row]):null;
             }
             td.className='execution-table-col'
             tr.appendChild(td)
@@ -227,3 +211,42 @@ function createTable(data) {
     executionTable.appendChild(table);  // or another container element
 }
 
+function openBotDetails(event) {
+    var clickedDiv = event.target;
+    deleteRefreshElements()
+    removeLastTable()
+    getBotsInfo(clickedDiv.id)
+        .then(()=>{
+            return getBotsTableActivities(clickedDiv.id);
+        })
+        .then(()=>{
+            console.log('Bot information loaded sucessfully')
+        })
+        .catch(error=>{
+            console.log('An error occurred', error);
+        })
+
+}
+
+function getBotsDepartments(){
+    return fetchModel('GET','botsDepartments',buildBotsDepartmentsElements)
+}
+
+function searchBot(search){
+    return fetchModel('GET',`botsSearch/${search}`,buildBotsElements)
+}
+
+function getBotsInfo(bot_name){
+    return fetchModel('GET',`botsInfo/${bot_name}`,buildBotsDescriptionElements)
+}
+
+function getBotsName(department){
+    return fetchModel('GET',`botsName/${department}`,buildBotsElements)
+
+}
+
+function getBotsTableActivities(bot_name){
+    showLoader();
+    fetchModel('GET',`botsStatus/${bot_name}`,buildTableActivities)
+    .then(()=>hideLoader())
+}

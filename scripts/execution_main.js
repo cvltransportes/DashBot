@@ -1,32 +1,17 @@
 const botDetails = document.getElementById("bot_details");
 const closeBotDetails = document.getElementById("closeModal");
 
-
 closeBotDetails.onclick = function() {
     botDetails.style.display = "none";
 }
 
-function openBotDetails(event) {
-    var clickedDiv = event.target;
-    removeLastTable()
-    getBotsInfo(clickedDiv.id)
-        .then(()=>{
-            return getBotsTableActivities(clickedDiv.id);
-        })
-        .then(()=>{
-            console.log('Bot information loaded sucessfully')
-        })
-        .catch(error=>{
-            console.log('An error occurred', error);
-        })
-
-}
 
 window.onclick = function(event) {
     if (event.target == botDetails) {
         botDetails.style.display = "none";
     }
 }
+
 
 document.addEventListener('DOMContentLoaded', function () {
     // Get the select element
