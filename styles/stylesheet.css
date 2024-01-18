@@ -48,6 +48,7 @@ body, html {
     display:flex;
     justify-content: center;
     align-items:center;
+    overflow: auto;
 
 }
 
@@ -64,14 +65,14 @@ body, html {
     flex-direction: column;
     background-color: var(--color_transparency_five);
     padding-top: 5em;
-    padding-bottom: 100%;
+    /* padding-bottom: 100%; */
     border-radius: 0 50px 50px 0;
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
     left: 0;
     top: 0;
     width: 20em; /* Full width */
-    height: 100%; /* Full height */
+    height: 95%;
     overflow: auto; /* Enable scroll if needed */
     font-size: 1em;
 
@@ -85,9 +86,7 @@ body, html {
     font-size: 1.5rem;
     font-weight: 600;
 }
-.sign__out{
-    margin-top: 14em;
-}
+
 .header__modal__link:hover{
     background-color: var(--color_transparency_ten);
 }

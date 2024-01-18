@@ -20,7 +20,7 @@
             <a class="header__modal__link" href="./deploy.html"><img class="header__img__menu header_modal_link_container" src="../assets/foguete.png" alt="" />Deploy</a>
             <a class="header__modal__link" href="./monitoring.html"><img class="header__img__menu header_modal_link_container" src="../assets/monitoramento.png" alt="" />Monitoring</a>
             <a class="header__modal__link" href="./execution.html"><img class="header__img__menu header_modal_link_container" src="../assets/servico.png" alt="" />Execution</a>
-            <a class="header__modal__link sign__out" href="../index.html"><img class="header__img__menu header_modal_link_container" src="../assets/sair.png" alt="" />Sign out</a>
+            <a class="header__modal__link" href="../index.html"><img class="header__img__menu header_modal_link_container" src="../assets/sair.png" alt="" />Sign out</a>
         </div>
     </header>
     <main class="homepage">
@@ -40,23 +40,25 @@
             <div id="bot_details" class="execution-modal">
                 <span id="closeModal" class="execution-close-modal">&times;</span>
                 <div class="execution-modal-content">
-                    <h2 id="bot_name">Bot qualidade execution</h2>
-                    <label class="execution-modal-content-label" for="label">Descrição:</label>
-                    <p id="bot_description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis labore quis dolor ea praesentium quos, explicabo eveniet, provident in aliquid aspernatur tempora delectus odit officia maiores neque, hic quam? Eligendi?</p>
-                    <label class="execution-modal-content-label" for="label">Setor:</label>
-                    <p id="bot_department">Qualidade</p>
+                    <h2 id="bot_name">...</h2>
+                    <label class="execution-modal-content-label" for="bot_description">Descrição:</label>
+                    <p id="bot_description">...</p>
+                    <label class="execution-modal-content-label" for="bot_department">Setor:</label>
+                    <p id="bot_department">...</p>
+                    <label class="execution-modal-content-label" for="bot_tasks">Tarefas:</label>
+                    <div id="bot_tasks">
+                    </div>
                     <div class="execution-modal-content-buttons">
-                        <button class="execution-modal-content-button">Iniciar</button>
-                        <button class="execution-modal-content-button">Finalizar</button>
-                        <button class="execution-modal-content-button">Agendar</button>
-                        <button class="execution-modal-content-button">Menu</button>
+                        <button id="start_bot" class="execution-modal-content-button" value="">Iniciar</button>
+                        <button id="end_bot" class="execution-modal-content-button" value="">Finalizar</button>
+                        <button id="schedule_bot" class="execution-modal-content-button" value="">Agendar</button>
+                        <button id="menu_bot" class="execution-modal-content-button" value="">Menu</button>
                     </div>
                     <div class="execution-modal-content-bots-status">
                         <div id="status_header" class="execution-modal-content-bots-status-header">
                             <h3>Atividades Recentes</h3>
                         </div>
-                        
-                        <div class="execution-modal-content-bots-status-table">
+                        <div class="execution-modal-content-bots-status-table" id="table_status">
                         </div>
                     </div>
                 </div>

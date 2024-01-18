@@ -4,10 +4,11 @@ const headers= {
     'ngrok-skip-browser-warning': '69420'
 }
 
-function fetchModel(method,endpoint,func){
+function fetchModel(method,endpoint,func,body=null){
     return fetch(`${baseUrlApi}/${endpoint}`, {
         method: method,
         headers: headers,
+        body: body,
     })
     .then(response => {
         if (response.ok){
@@ -25,14 +26,25 @@ function fetchModel(method,endpoint,func){
         if (data){
             func(data)
         }
+        else{
+            throw new Error('No data found!');
+        }
     })
     .catch((error) => {
         console.error('Error:', error);
+        throw new Error(error);
     });
 }
 
+function sortDataByTimestamp(data) {
+    data.sort((a, b) => {
+        return a.task_start_time - b.task_start_time;
+    });
+    return data
+}
+
 function buildBotsElements(data){
-    var botInfo = data//JSON.parse(data)
+    var botInfo = data
     let previousElement =  document.querySelectorAll('.execution_content_container')
     if (previousElement){
         previousElement.forEach(item=>item.remove())
@@ -40,8 +52,8 @@ function buildBotsElements(data){
     
     var executionContainer = document.querySelector('.execution_content')
     botsList = []
-    for (let key in botInfo.bot_name){
-        var botTextName = botInfo.bot_name[key]
+    for (let row in botInfo){
+        var botTextName = botInfo[row].bot_name
         if (!botsList.includes(botTextName)){
             botsList.push(botTextName)
             newBotNode = document.createElement('div')
@@ -60,19 +72,19 @@ function buildBotsElements(data){
 }
 
 function buildBotsDepartmentsElements(data){
-    var botsDepartments = data//JSON.parse(data)
+    console.log(data)
+    var botsDepartments = data
     var selectDepartments = document.getElementById("select_department");
-    for (let key in botsDepartments.department){
+    for (let row in botsDepartments){
         optionDepartment = document.createElement('option')
-        optionDepartment.innerText = botsDepartments.department[key]
-        optionDepartment.value = botsDepartments.department[key]
+        optionDepartment.innerText = botsDepartments[row].department
+        optionDepartment.value = botsDepartments[row].department
         selectDepartments.appendChild(optionDepartment)
     }
 }
 
 function createRefreshActivitiesElement(bot_name){
     var statusHeader = document.getElementById('status_header')
-
     refreshInput = document.createElement('input')
     refreshInput.className = 'execution-refresh-details'
     refreshInput.id = bot_name
@@ -80,51 +92,61 @@ function createRefreshActivitiesElement(bot_name){
     refreshInput.addEventListener('click',refreshBotsActivities)
 }
 
+
+
+
 function buildBotsDescriptionElements(data){
-    var botInfo = data//JSON.parse(data)
+    console.log(data)
+    //data = transformDataBotsInfo(data)
+    var botInfo = sortDataByTimestamp(data)
     var botName = document.getElementById("bot_name");
     var botDescription = document.getElementById("bot_description");
     var botDepartment = document.getElementById("bot_department");
+    var botTasks = document.getElementById("bot_tasks");
+    var botStart = document.getElementById("start_bot");
+    var botEnd = document.getElementById("end_bot");
 
-    createRefreshActivitiesElement(botInfo.bot_name[0])
+    createRefreshActivitiesElement(botInfo[0].bot_name)
 
-    botName.innerText = botInfo.bot_name[0].split('_').join(" ")
-    botDescription.innerText = botInfo.bot_description[0]
-    botDepartment.innerText = botInfo.bot_name[0].split('_')[1]
+    botName.innerText = botInfo[0].bot_name.split('_').join(" ")
+    botDescription.innerText = botInfo[0].bot_description
+    botDepartment.innerText = botInfo[0].bot_name.split('_')[1]
+    botStart.value = botInfo[0].pc_path
+    botEnd.value = botInfo[0].pc_path
+
+    botStart.addEventListener('click',startBot)
+
+    deleteBotTasksElements()
+
+    for (obj in botInfo){
+        console.log(botInfo[obj].task_name)
+        var p = document.createElement('p')
+        p.className='execution-bot-tasks'
+        p.innerText = botInfo[obj].task_name
+        botTasks.appendChild(p)
+    }
+    
     botDetails.style.display = "block";
+    
+}
+function deleteBotTasksElements(){
+    var lastTasks = document.querySelectorAll('.execution-bot-tasks')
+    lastTasks.forEach(item=>item.remove())
 }
 
 function deleteRefreshElements(){
     var lastRefresh = document.querySelectorAll('.execution-refresh-details')
-    console.log('Refresf elements', lastRefresh)
+    console.log('Refresh elements', lastRefresh)
     lastRefresh.forEach(item=>item.remove())
 
 }
 
 function refreshBotsActivities(event){
     var refreshInput = event.target;
-    //var refreshInput = document.querySelector('execution-refresh-details')
     removeLastTable()
     return getBotsTableActivities(refreshInput.id);
 }
 
-function buildTableActivities(data){
-    if(data){
-        createTable(data)
-        botDetails.style.display = "block";
-    }
-    else{
-        showEmptyTable()
-    }
-}
-
-function showEmptyTable(){
-    var executionTable = document.querySelector('.execution-modal-content-bots-status-table')
-    warning = document.createElement('h3')
-    warning.textContent = 'Sem informação disponível'
-    warning.className = 'execution-modal-content-without-table'
-    executionTable.appendChild(warning)
-}
 
 function removeLastTable(){
     var warningTable = document.querySelector('.execution-modal-content-without-table')
@@ -152,15 +174,20 @@ function sortColumnsBotsTable(jsonObject){
         'usuario',
         'versão do bot'
     ]
-    let sortedObject = {};
+    let sortedList = [];
+    
+    for (row in jsonObject){
+        let sortedObject = {};
+        listKeys.forEach(key => {
+            sortedObject[key] = jsonObject[row][key];
+        });
+        sortedList.push(sortedObject)
+    }
 
-    listKeys.forEach(key => {
-        sortedObject[key] = jsonObject[key];
-    });
-
-    console.log(sortedObject);
-    return sortedObject
+    console.log(sortedList);
+    return sortedList
 }
+
 function formatUTCDate(timestamp) {
     var date = new Date(timestamp);
     var year = date.getUTCFullYear();
@@ -173,9 +200,10 @@ function formatUTCDate(timestamp) {
     return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
 }
 
-// Function to create a table
+
 function createTable(data) {
     console.log(data)
+    data = sortDataByTimestamp(data)
     data = sortColumnsBotsTable(data)
     var executionTable = document.querySelector('.execution-modal-content-bots-status-table')
     // Create a table element
@@ -183,7 +211,7 @@ function createTable(data) {
 
     // Create the table header row
     let tr = document.createElement('tr');
-    for (let key in data) {
+    for (let key in data[0]) {
         let th = document.createElement('th');
         th.textContent = key;
         tr.appendChild(th);
@@ -191,15 +219,14 @@ function createTable(data) {
     table.appendChild(tr)
 
     // Create table rows from JSON data
-    for (let row in data['nome do bot']) {
-        console.log(row)
+    for (let row in data) {
         let tr = document.createElement('tr');
         tr.className='execution-table-row'
-        for (col in data) {
+        for (col in data[0]) {
             let td = document.createElement('td');
-            td.textContent = data[col][row];
+            td.textContent = data[row][col];
             if (col ==='inicio da tarefa' || col ==='final da tarefa'){
-                td.textContent = (data[col][row]>0)?formatUTCDate(data[col][row]):null;
+                td.textContent = (data[row][col]>0)?formatUTCDate(data[row][col]):null;
             }
             td.className='execution-table-col'
             tr.appendChild(td)
@@ -211,8 +238,17 @@ function createTable(data) {
     executionTable.appendChild(table);  // or another container element
 }
 
+function showEmptyTable(){
+    var executionTable = document.getElementById('table_status')
+    warning = document.createElement('h3')
+    warning.textContent = 'Sem informação disponível'
+    warning.className = 'execution-modal-content-without-table'
+    executionTable.appendChild(warning)
+}
+
 function openBotDetails(event) {
     var clickedDiv = event.target;
+    showLoader();
     deleteRefreshElements()
     removeLastTable()
     getBotsInfo(clickedDiv.id)
@@ -246,7 +282,15 @@ function getBotsName(department){
 }
 
 function getBotsTableActivities(bot_name){
-    showLoader();
-    fetchModel('GET',`botsStatus/${bot_name}`,buildTableActivities)
-    .then(()=>hideLoader())
+    fetchModel('GET',`botsStatus/${bot_name}`,createTable)
+    .catch(error=>{
+        showEmptyTable()
+    })
+    .finally(()=>hideLoader())
+}
+
+function startBot(){
+    var botStart = document.getElementById("start_bot");
+    body = JSON.stringify({"path_bot":botStart.value})
+    fetchModel('POST','startBot',(data)=>console.log(data),)
 }

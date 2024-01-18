@@ -179,7 +179,6 @@
     overflow: auto;
 }
 .execution-modal-content-without-table{
-    
     font-size: 3em;
     font-weight: 600;
     color: var(--color_transparency_three);
