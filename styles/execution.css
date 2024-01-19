@@ -186,7 +186,19 @@
     align-items: center;
     justify-content: center;
 }
-
+.execution-modal-content-bots-status-output{
+    display: none;
+    margin-top: 2em;
+    background-color:var(--color_transparency_twelve);
+    color: var(--color_transparency_five);
+    font-size: 0.5em;
+    height: 20em;
+    border-collapse: collapse;
+    overflow: auto;
+    text-align: start;
+    align-items: start;
+    justify-content: start;
+}
 table,th, td {
     display: flex;
     height: 3em;

@@ -112,9 +112,9 @@ function buildBotsDescriptionElements(data){
     botDescription.innerText = botInfo[0].bot_description
     botDepartment.innerText = botInfo[0].bot_name.split('_')[1]
     botStart.value = botInfo[0].pc_path
-    botEnd.value = botInfo[0].pc_path
 
     botStart.addEventListener('click',startBot)
+    botEnd.addEventListener('click',endBot)
 
     deleteBotTasksElements()
 
@@ -264,6 +264,12 @@ function openBotDetails(event) {
 
 }
 
+function processFinished(output) {
+    // Implement logic to determine if the process is finished
+    // For example, check if output contains a certain completion message
+    return output.includes("#Process Completed#");
+}
+
 function getBotsDepartments(){
     return fetchModel('GET','botsDepartments',buildBotsDepartmentsElements)
 }
@@ -291,6 +297,35 @@ function getBotsTableActivities(bot_name){
 
 function startBot(){
     var botStart = document.getElementById("start_bot");
+    var botEnd = document.getElementById("end_bot");
     body = JSON.stringify({"path_bot":botStart.value})
-    fetchModel('POST','startBot',(data)=>console.log(data),)
+    console.log(body)
+    fetchModel('POST','startBot',(data)=>{
+        botEnd.value = data['PID']
+        const intervalId = setInterval(() => {
+            getBotOutput(data['PID'],intervalId);
+        }, 2000);
+    },body)
+}
+
+function endBot(){
+    var botEnd = document.getElementById("end_bot");
+    body = JSON.stringify({"pid":botEnd.value})
+    console.log(body)
+    fetchModel('POST','endBot',(data)=>console.log(data),body)
+}
+
+function getBotOutput(pid,intervalId){
+    var botOutput = document.getElementById("bot_output");
+    fetchModel('GET',`getBotOutput?pid=${pid}`,(data)=>{
+        console.log(data)
+        botOutput.style.display='flex';
+        botOutput.textContent = data.message;
+        if (processFinished(data.message)) {
+            clearInterval(intervalId); // Stop fetching
+            console.log('Process finished.');
+            botOutput.textContent = '';
+            botOutput.style.display='none';
+        }
+    })
 }
