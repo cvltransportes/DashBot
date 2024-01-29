@@ -97,7 +97,6 @@ function createRefreshActivitiesElement(bot_name){
 
 function buildBotsDescriptionElements(data){
     console.log(data)
-    //data = transformDataBotsInfo(data)
     var botInfo = sortDataByTimestamp(data)
     var botName = document.getElementById("bot_name");
     var botDescription = document.getElementById("bot_description");
@@ -111,7 +110,7 @@ function buildBotsDescriptionElements(data){
     botName.innerText = botInfo[0].bot_name.split('_').join(" ")
     botDescription.innerText = botInfo[0].bot_description
     botDepartment.innerText = botInfo[0].bot_name.split('_')[1]
-    botStart.value = botInfo[0].pc_path
+    botStart.value = `${botInfo[0].bot_name}|${botInfo[0].pc_path}`
 
     botStart.addEventListener('click',startBot)
     botEnd.addEventListener('click',endBot)
@@ -129,6 +128,7 @@ function buildBotsDescriptionElements(data){
     botDetails.style.display = "block";
     
 }
+
 function deleteBotTasksElements(){
     var lastTasks = document.querySelectorAll('.execution-bot-tasks')
     lastTasks.forEach(item=>item.remove())
@@ -279,7 +279,8 @@ function searchBot(search){
 }
 
 function getBotsInfo(bot_name){
-    return fetchModel('GET',`botsInfo/${bot_name}`,buildBotsDescriptionElements)
+    return fetchModel('GET',`botsInfo/${bot_name}`,
+    (data)=>buildBotsDescriptionElements(data))
 }
 
 function getBotsName(department){
@@ -302,10 +303,15 @@ function startBot(){
     console.log(body)
     fetchModel('POST','startBot',(data)=>{
         botEnd.value = data['PID']
+        botStart.disabled = true;
         const intervalId = setInterval(() => {
             getBotOutput(data['PID'],intervalId);
         }, 2000);
     },body)
+    .then(()=>{
+        console.log('Enable the button start again')
+        botStart.disabled = false;
+    })
 }
 
 function endBot(){
