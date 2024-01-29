@@ -14,8 +14,8 @@ function fetchModel(method,endpoint,func,body=null){
         if (response.ok){
             return response.json()
         }
-       else if (response.status===401){
-            alert('!')
+       else if ([403, 401].includes(response.status)){
+            alert('Unauthorized or Unauthenticated!')
             window.location.href = '../index.html';
        }
        else{
@@ -85,14 +85,21 @@ function buildBotsDepartmentsElements(data){
 
 function createRefreshActivitiesElement(bot_name){
     var statusHeader = document.getElementById('status_header')
-    refreshInput = document.createElement('input')
-    refreshInput.className = 'execution-refresh-details'
-    refreshInput.id = bot_name
-    statusHeader.appendChild(refreshInput)
-    refreshInput.addEventListener('click',refreshBotsActivities)
+    refreshButton = document.createElement('button')
+    refreshButton.className = 'execution-refresh-details'
+    refreshButton.id = `status-${bot_name}`
+    statusHeader.appendChild(refreshButton)
+    refreshButton.addEventListener('click',refreshBotsActivities)
 }
 
-
+function createRefreshOutputElement(bot_name){
+    var outputHeader = document.getElementById('output_header')
+    refreshButton = document.createElement('button')
+    refreshButton.className = 'execution-refresh-details'
+    refreshButton.id = `output-${bot_name}`
+    outputHeader.appendChild(refreshButton)
+    refreshButton.addEventListener('click',refreshBotsOutput)
+}
 
 
 function buildBotsDescriptionElements(data){
@@ -106,14 +113,15 @@ function buildBotsDescriptionElements(data){
     var botEnd = document.getElementById("end_bot");
 
     createRefreshActivitiesElement(botInfo[0].bot_name)
+    createRefreshOutputElement(botInfo[0].bot_name)
 
     botName.innerText = botInfo[0].bot_name.split('_').join(" ")
     botDescription.innerText = botInfo[0].bot_description
     botDepartment.innerText = botInfo[0].bot_name.split('_')[1]
     botStart.value = `${botInfo[0].bot_name}|${botInfo[0].pc_path}`
 
-    botStart.addEventListener('click',startBot)
-    botEnd.addEventListener('click',endBot)
+    botStart.addEventListener('click',postStartBot)
+    botEnd.addEventListener('click',postEndBot)
 
     deleteBotTasksElements()
 
@@ -142,11 +150,18 @@ function deleteRefreshElements(){
 }
 
 function refreshBotsActivities(event){
-    var refreshInput = event.target;
+    var refreshButton = event.target;
+    bot_name = refreshButton.id
+    bot_name = bot_name.replace('status-','')
     removeLastTable()
-    return getBotsTableActivities(refreshInput.id);
+    return getBotsTableActivities(bot_name);
 }
 
+function refreshBotsOutput(event){
+    var refreshButton = event.target;
+    bot_name = refreshButton.id
+    getBotOutput(bot_name);
+}
 
 function removeLastTable(){
     var warningTable = document.querySelector('.execution-modal-content-without-table')
@@ -156,6 +171,14 @@ function removeLastTable(){
     }
     if (warningTable){
         warningTable.remove()
+    }
+    
+}
+
+function removeLastOutput(){
+    var lastOutput = document.querySelectorAll('.execution-modal-content-bots-status-output')
+    if (lastOutput){
+        lastOutput.forEach(item=>item.remove())
     }
     
 }
@@ -270,6 +293,49 @@ function processFinished(output) {
     return output.includes("#Process Completed#");
 }
 
+function startBot(data){
+    var bot_start = document.getElementById("start_bot");
+    var bot_end = document.getElementById("end_bot");
+    var bot_output = document.getElementById("bot_output");
+    console.log(data['PID'])
+    bot_end.value = data['PID']
+    bot_output.setAttribute("data-pid", data['PID']);
+    bot_start.disabled = true;
+    const intervalId = setInterval(() => {
+        bot_output.setAttribute("data-intervalId", intervalId);
+        console.log(intervalId)
+        getBotOutput();
+    }, 2000);
+}
+
+function botOutput(data){
+    var bot_output = document.getElementById("bot_output");
+
+    console.log(data)
+    bot_output.style.display='flex';
+    bot_output.textContent = data.message;
+
+    clearIntervalOutput(data)
+
+}
+
+function clearIntervalOutput(data){
+    var bot_start = document.getElementById("start_bot");
+    var bot_output = document.getElementById("bot_output");
+    var intervalId = bot_output.getAttribute("data-intervalId");
+    console.log(intervalId);
+
+    if (processFinished(data.message) & intervalId) {
+        clearInterval(intervalId); // Stop fetching
+        console.log('Process finished.');
+        //bot_output.textContent = '';
+        //bot_output.style.display='none';
+        console.log('Enable the button start again')
+        bot_start.disabled = false;
+
+    }
+}
+
 function getBotsDepartments(){
     return fetchModel('GET','botsDepartments',buildBotsDepartmentsElements)
 }
@@ -296,42 +362,27 @@ function getBotsTableActivities(bot_name){
     .finally(()=>hideLoader())
 }
 
-function startBot(){
-    var botStart = document.getElementById("start_bot");
-    var botEnd = document.getElementById("end_bot");
-    body = JSON.stringify({"path_bot":botStart.value})
-    console.log(body)
-    fetchModel('POST','startBot',(data)=>{
-        botEnd.value = data['PID']
-        botStart.disabled = true;
-        const intervalId = setInterval(() => {
-            getBotOutput(data['PID'],intervalId);
-        }, 2000);
-    },body)
-    .then(()=>{
-        console.log('Enable the button start again')
-        botStart.disabled = false;
-    })
+function getBotOutput(pid=null){
+    if (pid === null){
+        var bot_output = document.getElementById("bot_output");
+        var pid = bot_output.getAttribute("data-pid");
+    }
+    
+    console.log('pid getBotOutput:',pid);
+    fetchModel('GET',`getBotOutput?pid=${pid}`,botOutput)
 }
 
-function endBot(){
-    var botEnd = document.getElementById("end_bot");
-    body = JSON.stringify({"pid":botEnd.value})
+function postStartBot(){
+    var bot_start = document.getElementById("start_bot");
+    body = JSON.stringify({"path_bot":bot_start.value})
     console.log(body)
-    fetchModel('POST','endBot',(data)=>console.log(data),body)
+    fetchModel('POST','startBot',startBot,body)
 }
 
-function getBotOutput(pid,intervalId){
-    var botOutput = document.getElementById("bot_output");
-    fetchModel('GET',`getBotOutput?pid=${pid}`,(data)=>{
-        console.log(data)
-        botOutput.style.display='flex';
-        botOutput.textContent = data.message;
-        if (processFinished(data.message)) {
-            clearInterval(intervalId); // Stop fetching
-            console.log('Process finished.');
-            botOutput.textContent = '';
-            botOutput.style.display='none';
-        }
-    })
+function postEndBot(){
+    var bot_end = document.getElementById("end_bot");
+    body = JSON.stringify({"pid":bot_end.value})
+    console.log(body)
+    fetchModel('POST','endBot',clearIntervalOutput,body)
 }
+
