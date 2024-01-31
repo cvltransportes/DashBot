@@ -28,7 +28,13 @@ body, html {
     height: 100%; /* Make sure the html and body cover the full height of the viewport */
     margin: 0;
     padding: 0;
-    font-family: var(--font_primary)
+    font-family: var(--font_primary);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+main{
+    flex: 1;
 }
 .header__img__list{
     margin: 1% 0 0 1%;
@@ -206,12 +212,9 @@ body, html {
     100% { transform: rotate(360deg); }
 }
 .rodape{
-    position: relative;
-    left: 0;
-    bottom: 0;
-    width: auto; /* Or specify a width if you want */
     color: var(--color_transparency_five); /* Example text color */
     padding: 10px; /* Example padding */
+
 }
 
 ::-webkit-scrollbar {
