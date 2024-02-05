@@ -41,6 +41,10 @@ function getBotsDepartments(){
     return fetchModel('GET','botsDepartments',buildBotsDepartmentsElements)
 }
 
+function getBotsRunning(){
+    return fetchModel('GET','botsRunning',changeColorStatusBotsRunning)
+}
+
 function searchBot(search,department){
     return fetchModel('GET',`botsSearch?search=${search}&department=${department}`,buildBotsElements)
 }
