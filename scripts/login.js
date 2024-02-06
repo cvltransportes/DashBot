@@ -19,6 +19,8 @@ document.getElementById('signin-form').addEventListener('submit', function(event
             sessionStorage.setItem('jwt', data.access_token);
             // Redirect to dashboard or appropriate page
             window.location.href = './pages/execution.html';
+            var header_username = document.getElementById('header_username')
+            header_username.innerText = username
         } else {
             // Handle login failure
             alert('Invalid credentials');

@@ -54,8 +54,9 @@ main{
     display: none;
     position: fixed;
     top: 0;
-    z-index: 2; /* Sit on top */
-    width: 100%; /* Full width */
+    left: 20%;
+    z-index:2; /* Sit on top */
+    width: 80%; /* Full width */
     height: 100%; /* Full height */
     background: linear-gradient(to right, #1B2735, #3A4B5C); /* Black w/ opacity */
     opacity: 0.5;

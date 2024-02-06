@@ -10,6 +10,10 @@
     <div class="container">
     <header>
         <div id="modal_menu" class="header__modal__links" >
+            <div class="header_user">
+                <img class="header__img__avatar" src="../assets/avatar4.png" alt="" />
+                <h3 id="header_username"></h3>
+            </div>
             <a class="header__modal__link header_modal_link_container" href="./home.html"><img class="header__img__menu header_modal_link_container" src="../assets/botao-de-inicio.png" alt="" />Home</a>
             <a class="header__modal__link" href="./dashboard.html"><img class="header__img__menu header_modal_link_container" src="../assets/analise.png" alt="" />Dashboard</a>
             <a class="header__modal__link" href="./deploy.html"><img class="header__img__menu header_modal_link_container" src="../assets/foguete.png" alt="" />Deploy</a>
@@ -22,9 +26,6 @@
         <h1 class="header__title">
             <strong>Execução</strong>
         </h1>
-        <div id="loading">
-            <div class="loader"></div>
-        </div>
         <section class="execution_filter">
             <div class="execution_filter-selects">
                 <select class="execution_filter_select" name="" id="select_department">
@@ -78,6 +79,9 @@
             </div>
         </section>
     </main>
+    </div>
+    <div id="loading">
+        <div class="loader"></div>
     </div>
     <script src="../scripts/session.js"></script>
     <script src="../scripts/loader.js"></script>

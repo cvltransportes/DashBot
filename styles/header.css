@@ -11,6 +11,15 @@ header{
 .header__img__menu{
     width: 1em;
 }
+.header_user{
+    text-align: center;
+    padding: 1em;
+    margin-bottom: 2em;
+}
+.header__img__avatar{
+    width: 5em;
+
+}
 .header_modal_link_container{
     padding-right: 1em;
 }
