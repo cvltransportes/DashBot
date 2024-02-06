@@ -8,13 +8,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    <div class="container">
     <header>
-        <section class="header__section">
-            <img id="header_icon" class="header__img__list"  src="../assets/list.png" alt="">
-            <h1 class="header__title">
-                <strong>Dashboard</strong>
-            </h1>
-        </section>
         <div id="modal_menu" class="header__modal__links" >
             <a class="header__modal__link header_modal_link_container" href="./home.html"><img class="header__img__menu header_modal_link_container" src="../assets/botao-de-inicio.png" alt="" />Home</a>
             <a class="header__modal__link" href="./dashboard.html"><img class="header__img__menu header_modal_link_container" src="../assets/analise.png" alt="" />Dashboard</a>
@@ -24,7 +19,10 @@
             <a class="header__modal__link sign__out" href="../index.html"><img class="header__img__menu header_modal_link_container" src="../assets/sair.png" alt="" />Sign out</a>
         </div>
     </header>
-    <main class="homepage">
+    <main class="main_section">
+        <h1 class="header__title">
+            <strong>Dashboard</strong>
+        </h1>
         <section class="execution_content">
             <div class="dashboard-container">
                 <canvas id="barChart"></canvas>
@@ -32,6 +30,7 @@
             </div>
         </section>
     </main>
+    </div>
     <footer class="rodape">© 2024 cvltransportes</footer>
     <script src="../scripts/session.js"></script>
     <script src="../scripts/header.js"></script>     
