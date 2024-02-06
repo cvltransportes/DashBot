@@ -1,14 +1,16 @@
 var intervalsStarted=[]
 
 function openBotDetails(event) {
-    var clickedDiv = event.target;
+    var clickedDiv = event.target.closest('.execution_content_container')
+    bot_id = clickedDiv.id
+    
     showLoader();
     deleteRefreshActivitiesElements()
     removeLastTable()
     clearBotOutput()
-    getBotsInfo(clickedDiv.id)
+    getBotsInfo(bot_id)
         .then(()=>{
-            return getBotsTableActivities(clickedDiv.id);
+            return getBotsTableActivities(bot_id);
         })
         .then(()=>{
             console.log('Bot information loaded sucessfully')
@@ -16,6 +18,7 @@ function openBotDetails(event) {
         .catch(error=>{
             console.log('An error occurred', error);
         })
+        .finally(()=>hideLoader())
 
 }
 
@@ -47,17 +50,32 @@ function buildBotsDescriptionElements(data){
     
     var botStart = document.getElementById("start_bot");
     var botEnd = document.getElementById("end_bot");
+    var botSchedule = document.getElementById("schedule_bot");
+    var botMenu = document.getElementById("menu_bot");
 
     createRefreshActivitiesElement(botInfo[0].bot_name)
     createRefreshOutputElement(botInfo[0].bot_name)
 
-    botName.innerText = botInfo[0].bot_name.split('_').join(" ")
+    botName.innerText = botInfo[0].bot_name.split('_').join(" ") + ` - (${botInfo[0].classification})`
     botDescription.innerText = botInfo[0].bot_description
     botDepartment.innerText = botInfo[0].bot_name.split('_')[1]
     botStart.value = `${botInfo[0].bot_name}|${botInfo[0].pc_path}`
 
-    botStart.addEventListener('click',postStartBot)
-    botEnd.addEventListener('click',postEndBot)
+    if (botInfo[0].classification==='desktop'){
+        botStart.disabled = true
+        botEnd.disabled = true
+        botSchedule.disabled = true
+        botMenu.disabled = true
+    }
+    else{
+        botStart.disabled = false
+        botEnd.disabled = false
+        botSchedule.disabled = true
+        botMenu.disabled = true
+        botStart.addEventListener('click',postStartBot)
+        botEnd.addEventListener('click',postEndBot)
+    }
+    
 
     deleteBotTasksElements()
 
@@ -128,7 +146,7 @@ function setIntervalGetBotOutput(pid){
 function startBot(data){
     var bot_start = document.getElementById("start_bot");
     var bot_end = document.getElementById("end_bot");
-    bot_start.style.backgroundColor = 'red'
+    bot_start.style.backgroundColor = 'green'
     bot_end.value = data['PID']
     setIntervalGetBotOutput(data['PID'])
 }

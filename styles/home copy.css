@@ -10,8 +10,8 @@
     height: 100%;
     background: var(--image_background_login) center center no-repeat;
     background-size: cover;
-    z-index: -1; /* Place the background behind the content */
-    opacity: 1; /* Adjust for desired darkness */
+    z-index: -1; 
+    opacity: 1; 
     top: 0;
     left: 0;
 }

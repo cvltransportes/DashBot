@@ -44,13 +44,25 @@ function buildBotsElements(data){
     divs.forEach(function(div) {
         div.addEventListener('click', openBotDetails);
     });
-    getBotsRunning()
+    //getBotsRunning()
 }
 
 function buildBotsDepartmentsElements(data){
     console.log(data)
     var botsDepartments = data
     var selectDepartments = document.getElementById("select_department");
+    for (let row in botsDepartments){
+        optionDepartment = document.createElement('option')
+        optionDepartment.innerText = botsDepartments[row].department
+        optionDepartment.value = botsDepartments[row].department
+        selectDepartments.appendChild(optionDepartment)
+    }
+}
+
+function buildBotsOperationElements(data){
+    console.log(data)
+    var botsDepartments = data
+    var selectDepartments = document.getElementById("select_operation");
     for (let row in botsDepartments){
         optionDepartment = document.createElement('option')
         optionDepartment.innerText = botsDepartments[row].department
@@ -73,6 +85,34 @@ function changeColorStatusBotsRunning(data){
             }
             if (!found) {
                 statusBotEl.style.backgroundColor = 'red'
+            }
+        }
+    })
+}
+
+function findBotsOperation(data,operation){
+    var executionContainers = document.querySelectorAll('.execution_content_container')
+    executionContainers.forEach(item=>{
+        let found = false;
+        for (let row in data){
+            if (data[row].bot_name === item.id){
+                found = true;
+                console.log(operation,' running')
+                if (operation==='parados'){
+                    item.style.display = 'none'
+                }
+                else{
+                    item.style.display = 'flex'
+                }
+            }
+            if (!found) {
+                console.log(operation,' not running')
+                if (operation==='executando'){
+                    item.style.display = 'none'
+                }
+                else{
+                    item.style.display = 'flex'
+                }
             }
         }
     })

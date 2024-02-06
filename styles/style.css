@@ -1,17 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600&family=Montserrat:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Chakra+Petch:wght@600&family=Montserrat:wght@600&display=swap');
 @import url('header.css');
-@import url('home.css');
+@import url('login.css');
 @import url('footer.css');
 @import url('execution.css');
 
 :root{
     --image_background_login:url('../assets/login_page.png');
     --image_background_pages:url('../assets/background_pages.png');
-    --font_primary: 'Chakra Petch',sans-serif;
+    --font_primary: 'Inter',sans-serif;
     --color_transparency_one:#7d9bab;
     --color_transparency_two:#506b7b;
-    /* --color_transparency_three:#0b1011; */
-    /* --color_transparency_three:#01080E; */
     --color_transparency_three:#051933;  
     --color_transparency_four:#232829;
     --color_transparency_five:#FFF;
@@ -35,8 +33,16 @@ body, html {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    background-color: #0D1117;
+    color: #C9D1D9;
+
 }
 main{
+    flex: 1;
+}
+.container{
+    display: flex;
+    height: 100vh;
     flex: 1;
 }
 
@@ -51,7 +57,7 @@ main{
     z-index: 2; /* Sit on top */
     width: 100%; /* Full width */
     height: 100%; /* Full height */
-    background-color: var(--color_transparency_three); /* Black w/ opacity */
+    background: linear-gradient(to right, #1B2735, #3A4B5C); /* Black w/ opacity */
     opacity: 0.5;
     justify-content: center;
     align-items: center;

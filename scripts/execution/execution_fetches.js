@@ -45,18 +45,22 @@ function getBotsRunning(){
     return fetchModel('GET','botsRunning',changeColorStatusBotsRunning)
 }
 
+function getBotsOperation(operation){
+    return fetchModel('GET','botsRunning',(data)=>findBotsOperation(data,operation))
+}
+
 function searchBot(search,department){
     return fetchModel('GET',`botsSearch?search=${search}&department=${department}`,buildBotsElements)
+    
 }
 
 function getBotsInfo(bot_name){
-    return fetchModel('GET',`botsInfo/${bot_name}`,
-    (data)=>buildBotsDescriptionElements(data))
+    console.log(bot_name)
+    return fetchModel('GET',`botsInfo?bot_name=${bot_name}`,buildBotsDescriptionElements)
 }
 
 function getBotsName(department){
     return fetchModel('GET',`botsName/${department}`,buildBotsElements)
-
 }
 
 function getBotsTableActivities(bot_name){
@@ -80,7 +84,7 @@ function postStartBot(){
     .then(()=>{
         setTimeout(function() {
             bot_start.style.backgroundColor = '';
-        }, 2000);
+        }, 10000);
     })
     .finally(()=>hideLoader())
 }
@@ -89,6 +93,12 @@ function postEndBot(){
     var bot_end = document.getElementById("end_bot");
     body = JSON.stringify({"pid":bot_end.value})
     console.log(body)
+    bot_end.style.backgroundColor = 'red'
     fetchModel('POST','endBot',clearIntervalOutput,body)
+    .then(()=>{
+        setTimeout(function() {
+            bot_end.style.backgroundColor = '';
+        }, 3000);
+    })
 }
 

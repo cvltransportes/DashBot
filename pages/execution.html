@@ -7,13 +7,8 @@
     <link rel="stylesheet" href="../styles/style.css">
 </head>
 <body>
+    <div class="container">
     <header>
-        <section class="header__section">
-            <img id="header_icon" class="header__img__list"  src="../assets/list.png" alt="">
-            <h1 class="header__title">
-                <strong>Execução</strong>
-            </h1>
-        </section>
         <div id="modal_menu" class="header__modal__links" >
             <a class="header__modal__link header_modal_link_container" href="./home.html"><img class="header__img__menu header_modal_link_container" src="../assets/botao-de-inicio.png" alt="" />Home</a>
             <a class="header__modal__link" href="./dashboard.html"><img class="header__img__menu header_modal_link_container" src="../assets/analise.png" alt="" />Dashboard</a>
@@ -24,13 +19,26 @@
         </div>
     </header>
     <main class="homepage">
+        <h1 class="header__title">
+            <strong>Execução</strong>
+        </h1>
         <div id="loading">
             <div class="loader"></div>
         </div>
         <section class="execution_filter">
-            <select class="execution_filter_select" name="" id="select_department">
-                <option value="todos">Todos</option>
-            </select>
+            <div class="execution_filter-selects">
+                <select class="execution_filter_select" name="" id="select_department">
+                    <option value="todos"></option>
+                    <option value="todos">Todos</option>
+                </select>
+                <select class="execution_filter_select" name="" id="select_operation">
+                    <option value="todos"></option>
+                    <option value="todos">Todos</option>
+                    <option value="executando">Em execução</option>
+                    <option value="parados">Parados</option>
+                </select>
+            </div>
+
             <form class="execution_filter_form" id="searchBotForm">
                 <input class="execution_filter_input" type="search" name="search_bot" id="search_bot" placeholder="Pesquisar bot">
                 <input class="execution_filter_input filter_input_submit" type="submit" value="Ok">
@@ -61,7 +69,7 @@
                         <div class="execution-modal-content-bots-status-table" id="table_status">
                         </div>
                         <div id="output_header" class="execution-modal-content-bots-status-header">
-                            <h3>Saidas</h3>
+                            <h3>Terminal</h3>
                         </div>
                         <span class="execution-modal-content-bots-status-output" id="bot_output">
                         </span>
@@ -70,6 +78,7 @@
             </div>
         </section>
     </main>
+    </div>
     <script src="../scripts/session.js"></script>
     <script src="../scripts/loader.js"></script>
     <script src="../scripts/execution/execution_fetches.js"></script>
