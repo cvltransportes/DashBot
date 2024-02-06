@@ -26,7 +26,7 @@
 
 
 body, html {
-    height: 100%; /* Make sure the html and body cover the full height of the viewport */
+    /* height: 100%;  */
     margin: 0;
     padding: 0;
     font-family: var(--font_primary);
@@ -34,6 +34,9 @@ body, html {
     flex-direction: column;
     justify-content: space-between;
     background-color: #0D1117;
+    background: linear-gradient(to bottom, #051933, transparent);
+    background-attachment: fixed;
+    min-height: 100vh;
     color: #C9D1D9;
 
 }
