@@ -275,16 +275,27 @@ tr{
     overflow: auto;
 }
 
-@media(max-width:428px){
+@media(max-width:1120px){
     .execution_filter{
         flex-direction: column;
         gap: 1em;
         justify-content: center;
         align-items: center;
         text-align: center;
+        margin-right: 20%;
+        margin-top: 3em;
     }
     .execution_filter_form{
-        display: flex    
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin-left: 2em;
+    }
+    .execution_filter-selects{
+        flex-direction: column;
+        margin-top: 2em;
+        gap: 1em;
     }
     .execution_filter_select{
         margin: 0;
@@ -296,5 +307,7 @@ tr{
     .execution-modal-content-button{
         padding: 1em;
     }
-
+    .execution_content{
+        margin-right: 20%;
+    }
 }

@@ -49,9 +49,7 @@ main{
     flex: 1;
 }
 
-.hover__button:hover{
-    background-color: var(--color_transparency_one);
-}
+
 
 #loading{
     display: none;
@@ -100,4 +98,11 @@ main{
 ::-webkit-scrollbar-track {
     background: #f1f1f1;
     border-radius: 15px;
+}
+
+@media(max-width:1120px){
+    #loading{
+        left: 0;
+        width: 100%;
+    }
 }

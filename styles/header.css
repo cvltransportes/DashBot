@@ -25,19 +25,19 @@ header{
 }
 .header__section{
     margin: 0;
-    padding: 0;
+    padding: 0.5em;
     display:flex;
     justify-content: center;
     align-items:center;
-    overflow: auto;
+
 
 }
 
 .header__title{
-    margin: 0;
-    font-size: 3.5em;
+    margin-top: 0.5em;
+    font-size: 2.5em;
     color: #C9D1D9;
-    width: 95%;
+    width: 90%;
     text-align: center;
     justify-content: center;
     align-items: center;
@@ -75,4 +75,18 @@ header{
 
 .header__modal__link:hover{
     background-color: var(--color_transparency_ten);
+}
+
+@media(max-width:1120px){
+    header{
+        height: 100vh;
+        height: 10%;
+    }
+    .header__modal__links{
+        display: none;
+        width: 20em;
+    }
+    .main_section{
+        width: 100%;
+    }
 }
