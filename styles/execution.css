@@ -1,6 +1,6 @@
 /* Modal styles */
 .execution-modal {
-    display: none; /* Hidden by default */
+    display: flex; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
     left: 0;
@@ -204,6 +204,7 @@
 .execution-refresh-details:hover{
     background-color: var(--color_transparency_six);
 }
+
 .execution-modal-content-button{
     width: 10em;
 }
@@ -300,8 +301,16 @@ tr{
     .execution_filter_select{
         margin: 0;
     }
+    .execution-modal-content{
+        margin: 5%;
+        width: 85%;
+    }
+    #bot_tasks{
+        font-size: 0.7em;
+    }
     .execution-modal-content-buttons{
         flex-direction: column;
+        align-items: center;
         gap:1em
     }
     .execution-modal-content-button{
