@@ -35,6 +35,7 @@ header{
 
 .header__title{
     margin-top: 0.5em;
+    margin-bottom: 3em;
     font-size: 2.5em;
     color: #C9D1D9;
     width: 90%;
@@ -58,9 +59,9 @@ header{
     left: 0;
     top: 0em;
     width: 20%;
-    height: 100vh;
-    overflow: auto; /* Enable scroll if needed */
+    height: 60%;
     font-size: 1em;
+    overflow: auto;
 
 }
 
@@ -75,12 +76,16 @@ header{
 
 .header__modal__link:hover{
     background-color: var(--color_transparency_ten);
+    color: black;
 }
 
 @media(max-width:1120px){
     header{
         height: 100vh;
         height: 10%;
+    }
+    .header__title{
+        margin-bottom: 0;
     }
     .header__modal__links{
         display: none;

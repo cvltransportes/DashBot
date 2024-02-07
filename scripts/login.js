@@ -2,6 +2,7 @@ const baseUrlApi = 'https://renewed-crab-unbiased.ngrok-free.app/api'
 
 document.getElementById('signin-form').addEventListener('submit', function(event) {
     event.preventDefault();
+    showLoaderLogin()
     var username = document.getElementById('username').value;
     var password = document.getElementById('password').value;
 
@@ -28,5 +29,6 @@ document.getElementById('signin-form').addEventListener('submit', function(event
     })
     .catch(error => {
         console.error('Error:', error);
-    });
+    })
+    .finally(()=>hideLoaderLogin())
 });

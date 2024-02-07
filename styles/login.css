@@ -75,3 +75,36 @@
 .hover__button:hover{
     background-color: var(--color_transparency_one);
 }
+
+#loading_login{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index:2; /* Sit on top */
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background: linear-gradient(to right, #1B2735, #3A4B5C); /* Black w/ opacity */
+    opacity: 0.5;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.loader_login {
+    border: 5px solid #f3f3f3; /* Light grey */
+    border-top: 5px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 3em;
+    height: 3em;
+    animation: spin 2s linear infinite;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10%;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
