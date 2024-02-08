@@ -31,18 +31,25 @@
         </h1>
         <section class="execution_filter">
             <div class="execution_filter-selects">
-                <select class="execution_filter_select" name="" id="select_department">
-                    <option value="todos"></option>
-                    <option value="todos">Todos</option>
-                </select>
-                <select class="execution_filter_select" name="" id="select_operation">
-                    <option value="todos"></option>
-                    <option value="todos">Todos</option>
-                    <option value="executando">Em execução</option>
-                    <option value="parados">Parados</option>
-                </select>
+                <div class="execution_filter-select-group">
+                    <label class="execution_filter_select_label" for="select_department">Departamentos</label>
+                    <select class="execution_filter_select" name="" id="select_department">
+                        <option value="todos"></option>
+                        <option value="todos">Todos</option>
+                    </select>
+                </div>
+                <div class="execution_filter-select-group">
+                    <label class="execution_filter_select_label" for="select_operation">Operação</label>
+                    <select class="execution_filter_select" name="" id="select_operation">
+                        <option value="todos"></option>
+                        <option value="todos">Todos</option>
+                        <option value="executando">Em execução</option>
+                        <option value="falha">Com falha</option>
+                        <option value="parados">Finalizados</option>
+                        <option value="n_iniciado">Não iniciados</option>
+                    </select>
+                </div>
             </div>
-
             <form class="execution_filter_form" id="searchBotForm">
                 <input class="execution_filter_input" type="search" name="search_bot" id="search_bot" placeholder="Pesquisar bot">
                 <input class="execution_filter_input filter_input_submit" type="submit" value="Ok">

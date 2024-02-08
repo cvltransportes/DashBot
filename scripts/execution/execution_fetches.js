@@ -42,11 +42,14 @@ function getBotsDepartments(){
 }
 
 function getBotsRunning(){
-    return fetchModel('GET','botsRunning',changeColorStatusBotsRunning)
+    return fetchModel('GET','botsLastStatus',changeColorStatusBotsRunning)
 }
 
 function getBotsOperation(operation){
-    return fetchModel('GET','botsRunning',(data)=>findBotsOperation(data,operation))
+    return fetchModel('GET','botsLastStatus',(data)=>{
+        findBotsOperation(data,operation)
+        changeColorStatusBotsRunning(data)
+    })
 }
 
 function searchBot(search,department){

@@ -37,7 +37,6 @@ document.addEventListener('DOMContentLoaded', function () {
     function handleOperation(value) {
         showLoader();
         getBotsOperation(value)
-            .then(() => getBotsRunning())
             .finally(() => hideLoader());
     }
     // Add event listener for the 'change' event
@@ -81,9 +80,11 @@ document.addEventListener('DOMContentLoaded', function () {
     showLoader()
     getBotsName()
     .then(()=>{
+        getBotsRunning()
         return getBotsDepartments()
     })
     .then(()=>{
+        //return getBotsRunning()
         console.log('Bots loaded')
     })
     .catch(error=>{

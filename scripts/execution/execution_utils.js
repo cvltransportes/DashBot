@@ -16,3 +16,8 @@ function formatUTCDate(timestamp) {
 
     return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
 }
+
+function capitalizeString(str) {
+    if (!str) return '';
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+  }

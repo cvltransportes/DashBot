@@ -124,7 +124,7 @@
     width: 1px;
     height: 1px;
     border-radius: 10px;
-    background-color: red;
+    background-color: white;
     padding: 10px;
 }
 .execution_content_container_img{
@@ -143,6 +143,14 @@
 }
 .execution_filter-selects{
     display: flex;
+    gap: 2em;
+}
+.execution_filter-select-group{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 0.5em;
 }
 
 .execution_filter_select{
