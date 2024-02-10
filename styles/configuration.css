@@ -1,0 +1,152 @@
+.configuration_content{
+    display: flex;
+    flex-direction: column;
+    margin-left: 1em;
+    margin-right: 1em;
+    background-color: #C9D1D9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 16px;
+    padding-bottom: 30em;
+}
+
+.configuration_options{
+    display: flex;
+    width: 100%;
+    background: linear-gradient(to right, #1B2735, #3A4B5C);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 15px 15px 0 0;
+}
+.configuration_options_option{
+    padding: 1em;
+    border-radius: 15px 15px 0 0;
+    font-weight: 400;
+}
+.configuration_form{
+    color:#2C313C;
+}
+.configuration_form_user_options{
+    display: flex;
+}
+.configuration_form_user_option{
+    margin-top: 1em;
+    margin-left: 2em;
+    padding: 1em;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    cursor:pointer;
+}
+.configuration_form_user_option:hover{
+    background-color: #ddd;
+}
+.modern-table {
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* Table takes full width of its container */
+    border-collapse: collapse; /* Collapses the border to avoid double borders */
+    margin-top: 2em; /* Adds some space above the table */
+    margin-left: 2em;
+    max-height: 20em;
+    overflow: auto;
+}
+.modern-table th, .modern-table td {
+    border: none; /* Removes the border */
+    text-align: left;
+    padding: 8px;
+}
+.modern-table thead tr{
+    border-radius: 15px 15px 0 0;
+    border: 1px solid;
+    background-color: #6c757d; /* Darker shade for header */
+}
+.modern-table thead tr th{
+    background-color: transparent; /* Darker shade for header */
+}
+.modern-table th {
+    color: #ffffff; /* White text for contrast */
+}
+.modern-table tr{
+    display: flex;
+    width: 50em;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modern-table td {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    text-align: center; /* Aligns text to the left */
+    padding: 1em; /* Adds padding inside each cell */
+    border-bottom: 1px solid #ddd; /* Adds a light border to the bottom of each cell */
+}
+.modern-table tr:nth-child(even) {
+    background-color: #f2f2f2; /* Light gray background for even rows */
+}
+
+.modern-table tbody tr:hover {
+    background-color: #ddd;
+}
+.img-remove-user{
+    width: 1em;
+}
+
+.img-edit-user{
+    width: 1em;
+}
+.button-remove-user{
+    margin-right: 1em;
+    background-color: transparent;
+    border: none;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 0.5em;
+    border-radius: 5px;
+    cursor:pointer;
+}
+
+.button-edit-user{
+    background-color: transparent;
+    border: none;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 0.5em;
+    border-radius: 5px;
+    cursor:pointer;
+}
+
+.button-edit-user:hover, .button-remove-user:hover{
+    background-color: #6c757d;
+}
+
+.configuration_add_new_user_modal{
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    margin-top: 4em;
+    margin-left: 2em;
+    width: 80em;
+    height: 30em;
+    background-color: #ddd;
+    color: #6c757d;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    align-items: center;
+}
+.configuration_add_new_user_form{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    align-items: center;
+    margin-top: 2em;
+}
+.configuration_add_new_user_input{
+    border-radius: 10px;
+    padding: 0.8em;
+    border:none
+}
+.configuration_add_new_user_submit{
+    cursor: pointer;
+}
+
+.configuration_add_new_user_submit:hover{
+    background-color: #6c757d;
+}

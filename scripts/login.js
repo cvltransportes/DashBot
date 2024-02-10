@@ -24,7 +24,7 @@ document.getElementById('signin-form').addEventListener('submit', function(event
             header_username.innerText = username
         } else {
             // Handle login failure
-            alert('Invalid credentials');
+            alert('Credenciais Inválidas');
         }
     })
     .catch(error => {

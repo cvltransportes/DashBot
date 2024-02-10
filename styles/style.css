@@ -3,6 +3,7 @@
 @import url('login.css');
 @import url('footer.css');
 @import url('execution.css');
+@import url('configuration.css');
 
 :root{
     --image_background_login:url('../assets/login_page.png');

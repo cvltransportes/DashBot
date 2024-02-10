@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashbot</title>
+    <link rel="stylesheet" href="../styles/style.css">
+</head>
+<body>
+    <div class="container">
+    <header>
+        <section class="header__section">
+            <img id="header_icon" class="header__img__list"  src="../assets/list.png" alt="">
+        </section>
+        <div id="modal_menu" class="header__modal__links" >
+            <div class="header_user">
+                <img class="header__img__avatar" src="../assets/avatar4.png" alt="" />
+                <h3 id="header_username"></h3>
+            </div>
+            <a class="header__modal__link header_modal_link_container" href="./home.html"><img class="header__img__menu header_modal_link_container" src="../assets/botao-de-inicio.png" alt="" />Home</a>
+            <a class="header__modal__link" href="./dashboard.html"><img class="header__img__menu header_modal_link_container" src="../assets/analise.png" alt="" />Dashboard</a>
+            <a class="header__modal__link" href="./deploy.html"><img class="header__img__menu header_modal_link_container" src="../assets/foguete.png" alt="" />Deploy</a>
+            <a class="header__modal__link" href="./monitoring.html"><img class="header__img__menu header_modal_link_container" src="../assets/monitoramento.png" alt="" />Monitor</a>
+            <a class="header__modal__link" href="./execution.html"><img class="header__img__menu header_modal_link_container" src="../assets/schedule.png" alt="" />Execução</a>
+            <a class="header__modal__link" href="./configuracao.html"><img class="header__img__menu header_modal_link_container" src="../assets/servico.png" alt="" />Configuração</a>
+            <a class="header__modal__link sign__out" href="../index.html"><img class="header__img__menu header_modal_link_container" src="../assets/sair.png" alt="" />Sign out</a>
+        </div>
+    </header>
+    <main class="main_section">
+        <h1 class="header__title">
+            <strong>Configuração</strong>
+        </h1>
+        <section class="configuration_content">
+            <div class="configuration_options">
+                <div id="config_user" class="configuration_options_option">Configuração Usuários</div>
+                <div id="config_group" class="configuration_options_option">Configuração Grupos</div>
+                <div id="config_bots" class="configuration_options_option">Configuração Bots</div>
+            </div>
+            <div id="form_user" class="configuration_form">
+                <div class="configuration_form_user_options">
+                    <div class="configuration_form_user_option">Adicionar</div>
+                </div>
+                <table class="modern-table">
+                    <thead>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <div id="new_user_modal" class="configuration_add_new_user_modal">
+                <h2>Cadastro de Usuário</h2>
+                <p>Obs: Favor cadastrar as mesmas credencias do SSW para validação</p>
+                <form id="add_user_form" class="configuration_add_new_user_form">
+                    <input class="configuration_add_new_user_input" type="text" id="domain" name="domain" placeholder="Domínio">
+                    <input class="configuration_add_new_user_input" type="text" id="cpf" name="cpf" placeholder="CPF">
+                    <input class="configuration_add_new_user_input" type="text" id="username" name="username" placeholder="Usuário">
+                    <input class="configuration_add_new_user_input" type="password" id="password" name="password" placeholder="Senha">
+                    <input class="configuration_add_new_user_input" type="text" id="unit" name="unit" placeholder="Unidade">
+                    <input class="configuration_add_new_user_input configuration_add_new_user_submit" type="submit" value="Cadastrar">
+                </form>
+            </div>
+        </section>
+    </main>
+    </div>
+    <div id="loading">
+        <div class="loader"></div>
+    </div>
+    <footer class="rodape">© 2024 cvltransportes</footer>
+    <script src="../scripts/session.js"></script>
+    <script src="../scripts/utils.js"></script>
+    <script src="../scripts/loader.js"></script>
+    <script src="../scripts/header.js"></script>
+    <script src="../scripts/configuration/configuration_body.js"></script>
+    <script src="../scripts/configuration/configuration_events.js"></script>
+    <script src="../scripts/configuration/configuration_fetches.js"></script>           
+</body>
+</html>
