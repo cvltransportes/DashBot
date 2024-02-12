@@ -19,9 +19,9 @@ function createTableUsers(data){
 }
 
 function clearTableUsers(){
-    ths = document.querySelectorAll('.modern-table thead th')
+    ths = document.querySelectorAll('.modern-table thead tr')
     ths.forEach(item=>item.remove())
-    trs = document.querySelectorAll('.modern-table thead tr')
+    trs = document.querySelectorAll('.modern-table tbody tr')
     trs.forEach(item=>item.remove())
 }
 
@@ -51,8 +51,8 @@ function addRowToTableUsers(data) {
         var imgRemove = document.createElement('img')
         var imgEdit = document.createElement('img')
 
-        imgRemove.src = '../../assets/remover1.png'
-        imgEdit.src = '../../assets/editar2.png'
+        imgRemove.src = '/assets/remover1.png'
+        imgEdit.src = '/assets/editar2.png'
 
         imgRemove.className = 'img-remove-user'
         imgEdit.className = 'img-edit-user'
@@ -71,7 +71,7 @@ function addRowToTableUsers(data) {
         
         row.appendChild(cellButtons);
 
-        buttonRemove.addEventListener('click',()=>postDeleteUser(this.id))
+        buttonRemove.addEventListener('click',onClickDeleteUser)
         
         for (col in data[idx]) {
             var cell = document.createElement('td');
@@ -91,3 +91,11 @@ function onResponseRegisterNewUser(data){
     newUserModal.style.display='none'
 }
 
+function onClickDeleteUser(event){
+    var clickedButtonRemove = event.target.closest('.button-remove-user')
+    var buttonID = clickedButtonRemove.id.split('-')[1]
+    showLoader()
+    postDeleteUser(buttonID)
+    .then(()=>getUsers())
+    .finally(()=>hideLoader())
+}

@@ -3,17 +3,13 @@ function getUsers(){
 }
 
 function postNewUser(userForm){
-    showLoader()
     body = JSON.stringify(userForm)
     console.log(body)
-    fetchModel('POST','register',onResponseRegisterNewUser,body)
-    .finally(()=>hideLoader())
+    return fetchModel('POST','register',onResponseRegisterNewUser,body)
 }
 
 function postDeleteUser(user_id){
-    showLoader()
     body = JSON.stringify({'user_id':user_id})
     console.log(body)
-    fetchModel('POST','deleteUser',data=>console.log(data),body)
-    .finally(()=>hideLoader())
+    return fetchModel('POST','deleteUser',data=>console.log(data),body)
 }

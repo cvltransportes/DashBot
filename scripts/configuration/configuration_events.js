@@ -8,8 +8,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     configUser.style.backgroundColor = '#C9D1D9'
     configUser.style.color = '#2C313C'
-
+    showLoader()
     getUsers()
+    .finally(()=>hideLoader())
 });
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -39,6 +40,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 break;
             }
             formValues[key] = value.trim();
+
+            console.log(formValues.cpf)
+            formValues.cpf = String(formValues.cpf).replace(/\D/g, '');
+            console.log(formValues.cpf)
+
         }
         // Check if all fields are filled
         if (!allFilled) return;
@@ -62,7 +68,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         console.log(formValues);
+        showLoader()
         postNewUser(formValues)
+        .then(()=>getUsers())
+        .finally(()=>hideLoader())
         // Here you can add what you want to do next, e.g., sending data to a server, updating UI, etc.
     });
 });
