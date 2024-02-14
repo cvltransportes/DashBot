@@ -79,14 +79,8 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('DOMContentLoaded', function () {
     showLoader()
     getBotsName()
-    .then(()=>{
-        getBotsRunning()
-        return getBotsDepartments()
-    })
-    .then(()=>{
-        //return getBotsRunning()
-        console.log('Bots loaded')
-    })
+    .then(()=>getBotsRunning())
+    .then(()=>getBotsDepartments())
     .catch(error=>{
         console.log('An error occurred: ',error)
     })

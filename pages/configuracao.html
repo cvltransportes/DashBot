@@ -40,7 +40,29 @@
                 <div class="configuration_form_user_options">
                     <div class="configuration_form_user_option">Adicionar</div>
                 </div>
-                <table class="modern-table">
+                <table id="form_user_table" class="modern-table">
+                    <thead>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <div id="form_group" class="configuration_form">
+                <div class="configuration_form_group_options">
+                    <div class="configuration_form_group_option">Adicionar</div>
+                </div>
+                <table id="form_group_table" class="modern-table">
+                    <thead>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <div id="form_bots" class="configuration_form">
+                <div class="configuration_form_bots_options">
+                    <div class="configuration_form_bots_option">Adicionar</div>
+                </div>
+                <table id="form_bots_table" class="modern-table">
                     <thead>
                     </thead>
                     <tbody>
@@ -48,6 +70,7 @@
                 </table>
             </div>
             <div id="new_user_modal" class="configuration_add_new_user_modal">
+                <div id="close_new_user_modal">&times;</div>
                 <h2>Cadastro de Usuário</h2>
                 <p>Obs: Favor cadastrar as mesmas credencias do SSW para validação</p>
                 <form id="add_user_form" class="configuration_add_new_user_form">
@@ -56,6 +79,23 @@
                     <input class="configuration_add_new_user_input" type="text" id="username" name="username" placeholder="Usuário">
                     <input class="configuration_add_new_user_input" type="password" id="password" name="password" placeholder="Senha">
                     <input class="configuration_add_new_user_input" type="text" id="unit" name="unit" placeholder="Unidade">
+                    <input class="configuration_add_new_user_input configuration_add_new_user_submit" type="submit" value="Cadastrar">
+                </form>
+            </div>
+            <div id="new_bot_modal" class="configuration_add_new_bot_modal">
+                <div id="close_new_bot_modal">&times;</div>
+                <h2>Configuração Situação Bot</h2>
+                <p></p>
+                <form id="add_bot_form" class="configuration_add_new_bot_form">
+                    <label class="config_bot_select_label" for="bot_select_name">Selecione o Bot</label>
+                    <select class="config_bot_select" name="bot_select_name" id="bot_select_name">
+                        <option value="none"></option>
+                    </select>
+                    <label class="config_bot_select_label" for="bot_select_status">Situação</label>
+                    <select class="config_bot_select" name="bot_select_status" id="bot_select_status">
+                        <option value="active">Ativo</option>
+                        <option value="inactive">Inativo</option>
+                    </select>
                     <input class="configuration_add_new_user_input configuration_add_new_user_submit" type="submit" value="Cadastrar">
                 </form>
             </div>

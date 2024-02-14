@@ -7,7 +7,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border-radius: 16px;
-    padding-bottom: 30em;
+    height: 50em;
 }
 
 .configuration_options{
@@ -25,9 +25,13 @@
 .configuration_form{
     color:#2C313C;
 }
+.configuration_form_group_options,
+.configuration_form_bots_options,
 .configuration_form_user_options{
     display: flex;
 }
+.configuration_form_group_option,
+.configuration_form_bots_option,
 .configuration_form_user_option{
     margin-top: 1em;
     margin-left: 2em;
@@ -36,6 +40,8 @@
     border-radius: 16px;
     cursor:pointer;
 }
+.configuration_form_group_option,
+.configuration_form_bots_option,
 .configuration_form_user_option:hover{
     background-color: #ddd;
 }
@@ -49,10 +55,12 @@
     max-height: 20em;
     overflow: auto;
 }
+#form_bots_table{
+    width: fit-content;
+}
 .modern-table th, .modern-table td {
     border: none; /* Removes the border */
-    text-align: left;
-    padding: 8px;
+
 }
 .modern-table thead tr{
     border-radius: 15px 15px 0 0;
@@ -80,6 +88,12 @@
     padding: 1em; /* Adds padding inside each cell */
     border-bottom: 1px solid #ddd; /* Adds a light border to the bottom of each cell */
 }
+#form_bots_table td{
+    width: auto;
+}
+#form_bots_table tr{
+    justify-content: space-between;
+}
 .modern-table tr:nth-child(even) {
     background-color: #f2f2f2; /* Light gray background for even rows */
 }
@@ -87,14 +101,14 @@
 .modern-table tbody tr:hover {
     background-color: #ddd;
 }
-.img-remove-user{
+.img-remove-config{
     width: 1em;
 }
 
-.img-edit-user{
+.img-edit-config{
     width: 1em;
 }
-.button-remove-user{
+.button-remove-config{
     margin-right: 1em;
     background-color: transparent;
     border: none;
@@ -104,7 +118,7 @@
     cursor:pointer;
 }
 
-.button-edit-user{
+.button-edit-config{
     background-color: transparent;
     border: none;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
@@ -113,11 +127,17 @@
     cursor:pointer;
 }
 
-.button-edit-user:hover, .button-remove-user:hover{
+.button-edit-config:hover,
+.button-remove-config:hover{
     background-color: #6c757d;
 }
-
-.configuration_add_new_user_modal{
+#close_new_bot_modal,
+#close_new_user_modal{
+    margin-left: 97%;
+    padding: 1%;
+}
+.configuration_add_new_user_modal,
+.configuration_add_new_bot_modal{
     position: absolute;
     display: none;
     flex-direction: column;
@@ -149,4 +169,51 @@
 
 .configuration_add_new_user_submit:hover{
     background-color: #6c757d;
+}
+
+.configuration_add_new_bot_form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.config_bot_select{
+    padding: 0.5em;
+    min-width: 30em;
+    margin-bottom: 1em;
+    border-radius: 15px;
+    text-align: center;
+}
+
+@media(max-width:1820px){
+    .configuration_content{
+        position: fixed;
+        margin-top: 2em;
+        left: 1%;
+        width: 92%;
+    }
+    .configuration_options{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
+    }
+    .configuration_options_option{
+        width: 100%;
+        padding: 1em 0;
+    }
+    #form_bots_table,
+    .modern-table{
+        width: 80%;
+        height: auto;
+        border-radius: 15px 15px 0 0;
+    }
+    
+    .configuration_add_new_bot_modal,
+    .configuration_add_new_user_modal{
+        margin-left: 1em;
+        width: 80%;
+        padding: 1em;
+    }
 }

@@ -284,7 +284,7 @@ tr{
     overflow: auto;
 }
 
-@media(max-width:1120px){
+@media(max-width:1820px){
     .execution_filter{
         flex-direction: column;
         gap: 1em;
@@ -300,6 +300,7 @@ tr{
         align-items: center;
         text-align: center;
         margin-left: 2em;
+        margin-top: 2em;
     }
     .execution_filter-selects{
         flex-direction: column;

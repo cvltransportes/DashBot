@@ -56,9 +56,9 @@ main{
     display: none;
     position: fixed;
     top: 0;
-    left: 20%;
+    left: 15%;
     z-index:2; /* Sit on top */
-    width: 80%; /* Full width */
+    width: 85%; /* Full width */
     height: 100%; /* Full height */
     background: linear-gradient(to right, #1B2735, #3A4B5C); /* Black w/ opacity */
     opacity: 0.5;
@@ -101,7 +101,7 @@ main{
     border-radius: 15px;
 }
 
-@media(max-width:1120px){
+@media(max-width:1820px){
     #loading{
         left: 0;
         width: 100%;
