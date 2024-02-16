@@ -23,7 +23,7 @@
             <a class="header__modal__link" href="./monitoring.html"><img class="header__img__menu header_modal_link_container" src="../assets/monitoramento.png" alt="" />Monitor</a>
             <a class="header__modal__link" href="./execution.html"><img class="header__img__menu header_modal_link_container" src="../assets/schedule.png" alt="" />Execução</a>
             <a class="header__modal__link" href="./configuracao.html"><img class="header__img__menu header_modal_link_container" src="../assets/servico.png" alt="" />Configuração</a>
-            <a class="header__modal__link sign__out" href="../index.html"><img class="header__img__menu header_modal_link_container" src="../assets/sair.png" alt="" />Sign out</a>
+            <button id="button_sign__out" class="header__modal__link sign__out" value=""><img class="header__img__menu header_modal_link_container" src="../assets/sair.png" alt="" />Sign out</button>
         </div>
     </header>
     <main class="main_section">
@@ -95,6 +95,11 @@
                     <select class="config_bot_select" name="bot_select_status" id="bot_select_status">
                         <option value="active">Ativo</option>
                         <option value="inactive">Inativo</option>
+                    </select>
+                    <label class="config_bot_select_label" for="bot_select_classification">Classificação</label>
+                    <select class="config_bot_select" name="bot_select_classification" id="bot_select_classification">
+                        <option value="server">Servidor</option>
+                        <option value="desktop">Desktop</option>
                     </select>
                     <input class="configuration_add_new_user_input configuration_add_new_user_submit" type="submit" value="Cadastrar">
                 </form>

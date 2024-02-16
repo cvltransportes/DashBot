@@ -260,11 +260,16 @@ function validateAndPostNewBotSituation(){
         let allFilled = true;
         var bot_name = document.getElementById('bot_select_name').value
         var situation = document.getElementById('bot_select_status').value
+        var classification = document.getElementById('bot_select_status').value
         if (!bot_name.trim()) {
             alert(`Por favor insira o campo Bot!`);
             allFilled = false;
         }
         if (!situation.trim()) {
+            alert(`Por favor insira o campo Situação!`);
+            allFilled = false;
+        }
+        if (!classification.trim()) {
             alert(`Por favor insira o campo Situação!`);
             allFilled = false;
         }
@@ -275,7 +280,7 @@ function validateAndPostNewBotSituation(){
             formValues[key] = value.trim();
         }
     }
-
+    console.log(formValues)
     showLoader()
     postBotSituation(formValues)
     .then(()=>getBotsSituation())

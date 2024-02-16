@@ -64,7 +64,7 @@ header{
     overflow: auto;
 
 }
-
+#button_sign__out,
 .header__modal__link{
     text-decoration: none;
     color: #C9D1D9;
@@ -73,9 +73,17 @@ header{
     font-size: 1.5rem;
     font-weight: 600;
 }
-
+#button_sign__out{
+    background: linear-gradient(to right, #1B2735, #3A4B5C);
+    text-align: left;
+    border: none;
+}
 .header__modal__link:hover{
     background-color: var(--color_transparency_ten);
+    color: black;
+}
+#button_sign__out:hover{
+    background: var(--color_transparency_ten);
     color: black;
 }
 

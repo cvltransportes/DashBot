@@ -59,7 +59,7 @@ function buildBotsDescriptionElements(data){
     botName.innerText = botInfo[0].bot_name.split('_').join(" ") + ` - (${botInfo[0].classification})`
     botDescription.innerText = botInfo[0].bot_description
     botDepartment.innerText = botInfo[0].bot_name.split('_')[1]
-    botStart.value = `${botInfo[0].bot_name}|${botInfo[0].pc_path}`
+    botStart.value = botInfo[0].bot_name
 
     if (botInfo[0].classification==='desktop'){
         botStart.disabled = true
