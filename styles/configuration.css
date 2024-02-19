@@ -212,7 +212,6 @@
     
     .configuration_add_new_bot_modal,
     .configuration_add_new_user_modal{
-        display: flex;
         margin-left: 1em;
         width: 80%;
         padding: 1em;
