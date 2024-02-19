@@ -67,9 +67,11 @@
     /* border: 2px solid black; */
 
 }
-.hover__button{
+
+#login-btn{
     width: 10em;
     font-weight: 600;
+    flex-wrap: wrap;
 }
 
 .hover__button:hover{
