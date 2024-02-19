@@ -172,11 +172,15 @@ function clearIntervalOutput(data){
     if (processFinished(data.message)) {
         intervalsStarted.forEach(item=>clearInterval(item))
         console.log('Process finished.');
-        var refreshButton = document.getElementById('status_header').querySelector('button')
-        refreshButton.click()
-        bot_name = refreshButton.id.replace('status-','')
-        alert(`Processo Finalizado para o ${bot_name}!`)
-
+        if (!data.message.includes('Sem processos em execução nessa sessão!')){
+            var refreshButton = document.getElementById('status_header').querySelector('button')
+            bot_name = refreshButton.id.replace('status-','')
+            alert(`Processo Finalizado para o ${bot_name}!`)
+            refreshButton.click()
+        }
+        else{
+            alert(`Sem processos em execução nessa sessão! para ${bot_name}!`)
+        }
     }
 }
 
