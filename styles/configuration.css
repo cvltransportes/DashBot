@@ -187,10 +187,11 @@
 
 @media(max-width:1820px){
     .configuration_content{
-        position: fixed;
+        position: absolute;
         margin-top: 2em;
         left: 1%;
         width: 92%;
+        overflow: auto;
     }
     .configuration_options{
         flex-direction: column;
@@ -205,7 +206,7 @@
     }
     #form_bots_table,
     .modern-table{
-        width: 80%;
+        width: auto;
         height: auto;
         border-radius: 15px 15px 0 0;
     }
