@@ -61,19 +61,19 @@ function buildBotsDescriptionElements(data){
     botDepartment.innerText = botInfo[0].bot_name.split('_')[1]
     botStart.value = botInfo[0].bot_name
 
-    if (botInfo[0].classification==='desktop'){
-        botStart.disabled = true
-        botEnd.disabled = true
-        botSchedule.disabled = true
-        botMenu.disabled = true
-    }
-    else{
+    if (botInfo[0].classification==='server'){
         botStart.disabled = false
         botEnd.disabled = false
         botSchedule.disabled = true
         botMenu.disabled = true
         botStart.addEventListener('click',postStartBot)
         botEnd.addEventListener('click',postEndBot)
+    }
+    else{
+        botStart.disabled = true
+        botEnd.disabled = true
+        botSchedule.disabled = true
+        botMenu.disabled = true
     }
     
 
