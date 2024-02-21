@@ -32,37 +32,55 @@
             <strong>Dashboard</strong>
         </h1>
         <section class="dashboard-container">
-            <div class="dashboard-charts">
+            <h2 class="dashboard_subtitle">Visualizações Dinâmicas</h2>
+            <form class="dashboard_filter_form" id="dashboard_date">
+                <div class="dashboard_date_div">
+                    <label for="date_ini">Data Inicial</label>
+                    <input class="dashboard_filter_input" type="date" name="date_ini" id="date_ini">
+                </div>
+                <div class="dashboard_date_div">
+                    <label for="date_ini">Data Final</label>
+                    <input class="dashboard_filter_input" type="date" name="date_fim" id="date_fim">
+                </div>
+                <input class="dashboard_filter_input date_submit" type="submit" value="Ok">
+            </form>
+
+            <div id="chart1_div" class="dashboard-charts">
                 <canvas id="chart1"></canvas>
             </div>
-            <div class="dashboard-charts">
+            <div id="chart2_div" class="dashboard-charts">
                 <canvas id="chart2"></canvas>
             </div>
-            <div class="dashboard-charts">
+            <div id="chart3_div" class="dashboard-charts">
                 <canvas id="chart3"></canvas>
             </div>
-            <div class="dashboard-charts">
+            <div id="chart4_div" class="dashboard-charts">
                 <canvas id="chart4"></canvas>
             </div>
-            <div class="dashboard-charts">
+            <div id="chart5_div" class="dashboard-charts">
                 <canvas id="chart5"></canvas>
             </div>
-            <div class="dashboard-charts">
+            <div id="chart6_div" class="dashboard-charts">
                 <canvas id="chart6"></canvas>
             </div>
-            <div class="dashboard-charts">
+            <h2 class="dashboard_subtitle">Visualizações Fixas</h2>
+            <div id="chart7_div" class="dashboard-charts">
                 <canvas id="chart7"></canvas>
             </div>
-            <div class="dashboard-charts">
+            <div id="chart8_div" class="dashboard-charts">
                 <canvas id="chart8"></canvas>
             </div>
         </section>
 
     </main>
     </div>
+    <div id="loading">
+        <div class="loader"></div>
+    </div>
     <footer class="rodape">© 2024 cvltransportes</footer>
     <script src="../scripts/session.js"></script>
     <script src="../scripts/utils.js"></script>
+    <script src="../scripts/loader.js"></script>
     <script src="../scripts/header.js"></script>
     <script src="../scripts/dashboard/dashboard_body.js"></script> 
     <script src="../scripts/dashboard/dashboard_events.js"></script> 

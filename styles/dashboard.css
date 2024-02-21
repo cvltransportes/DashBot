@@ -3,21 +3,57 @@
     flex-wrap: wrap;
     width: 90%;
     margin-left: 2em;
-    gap: 10em;
+    gap: 2em;
     background-color: #C9D1D9;
     padding: 2em;
     border-radius: 15px;
+    color: black;
+}
+.dashboard_filter_form{
+    display: flex;
+    width: 100%;
+    padding: 1em;
+    gap: 1em;
+    align-items: end;
 }
 
+.dashboard_date_div{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.dashboard_filter_input{
+    padding: 0.5em;
+    border-radius: 10px;
+    border: none;
+}
+.date_submit{
+    width: 3em;
+    height: 2.4em;
+    cursor: pointer;
+}
+.date_submit:hover{
+    background-color: #ddd;
+}
+.dashboard_subtitle{
+    width: 100%;
+    text-align: center;
+}
 .dashboard-charts{
+    display: flex;
     width: 40em;
     height: 20em ;
     aspect-ratio: auto;
+    margin: 1em;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
 }
+
 .dashboard-charts canvas {
-    width: 100% !important;
-    height: 100% !important;
     aspect-ratio: auto;
+
 }
 
 @media(max-width:1820px){
