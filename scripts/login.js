@@ -1,5 +1,3 @@
-const baseUrlApi = 'https://renewed-crab-unbiased.ngrok-free.app/api'
-
 function disableLoginButton(minutes) {
     const loginBtn = document.getElementById('login-btn');
     loginBtn.disabled = true;
@@ -27,14 +25,13 @@ document.getElementById('signin-form').addEventListener('submit', function(event
     var username = document.getElementById('username').value;
     var password = document.getElementById('password').value;
 
-    fetch(`${baseUrlApi}/login`, {
+    fetchWithRedundancy(baseUrls, 'login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({ username: username, password: password }),
     })
-    .then(response => response.json())
     .then(data => {
         if (data.access_token) {
             // Store the JWT for future requests

@@ -4,23 +4,49 @@ const headers= {
     'ngrok-skip-browser-warning': '69420'
 }
 
+const baseUrls = [
+    'https://musical-safe-oriole.ngrok-free.app/api/',
+    'https://renewed-crab-unbiased.ngrok-free.app/api/',
+    'https://promoted-clear-gibbon.ngrok-free.app/api/'
+  ];
+  
+function fetchWithRedundancy(urls, path, requestOptions) {
+    return new Promise((resolve, reject) => {
+        const attemptFetch = (urlIndex) => {
+        if (urlIndex >= urls.length) {
+            reject(new Error('All URLs failed'));
+            return;
+        }
+
+        fetch(`${urls[urlIndex]}${path}`, requestOptions)
+        .then(response => {
+            if (response.ok){
+                return response.json()
+            }
+            else if ([403, 401].includes(response.status)){
+                    alert('Unauthorized or Unauthenticated!')
+                    window.location.href = '../index.html';
+            }
+            else{
+                throw new Error('Response not okay!');
+            }
+            })
+            .then(data => resolve(data))
+            .catch(() => {
+            console.log(`Attempt with URL ${urls[urlIndex]} failed, trying next URL if available.`);
+            attemptFetch(urlIndex + 1);
+            });
+        };
+
+        attemptFetch(0); // Start with the first URL
+    });
+}
+
 function fetchModel(method,endpoint,func,body=null){
-    return fetch(`${baseUrlApi}/${endpoint}`, {
+    return fetchWithRedundancy(baseUrls, endpoint, {
         method: method,
         headers: headers,
         body: body,
-    })
-    .then(response => {
-        if (response.ok){
-            return response.json()
-        }
-       else if ([403, 401].includes(response.status)){
-            alert('Unauthorized or Unauthenticated!')
-            window.location.href = '../index.html';
-       }
-       else{
-        throw new Error('Response not okay!');
-       }
     })
     .then(data => {
         if (data){
@@ -35,6 +61,7 @@ function fetchModel(method,endpoint,func,body=null){
         throw new Error(error);
     });
 }
+
 
 function sortDataByTimestamp(data) {
     data.sort((a, b) => {
