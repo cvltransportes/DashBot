@@ -221,3 +221,14 @@ function createPieChart(data,chart_id,title='Pie Chart') {
         }
     });
 }
+
+function buildBotsSelectConfigElements(data){
+    var botsInfo = data
+    var selectBotConfig = document.getElementById("bot_select_name");
+    for (let row in botsInfo){
+        optionBotConfig = document.createElement('option')
+        optionBotConfig.innerText = capitalizeString(botsInfo[row].bot_name)
+        optionBotConfig.value = botsInfo[row].bot_name
+        selectBotConfig.appendChild(optionBotConfig)
+    }
+}

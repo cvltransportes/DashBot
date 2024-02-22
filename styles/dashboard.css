@@ -22,7 +22,7 @@
     flex-direction: column;
     gap: 0.5em;
 }
-
+.dashboard_filter_select,
 .dashboard_filter_input{
     padding: 0.5em;
     border-radius: 10px;
