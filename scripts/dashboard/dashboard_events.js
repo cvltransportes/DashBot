@@ -31,13 +31,13 @@ document.addEventListener('DOMContentLoaded', function() {
       console.log(`Data Inicial: ${dateIni}, Data Final: ${dateFim}`);
       if (bot_name){
         showLoader()
-        getBotsDashboardBarchart('qtde_fails_per_bot','chart1',dateIni,dateFim,bot_name)
+        getBotsDashboardCardchart('qtde_fails_per_bot','chart1',dateIni,dateFim,bot_name)
         .finally(()=>hideLoader())
-        getBotsDashboardBarchart('qtde_not_end_per_bot','chart2',dateIni,dateFim,bot_name)
-        getBotsDashboardBarchart('qtde_days_per_bot','chart3',dateIni,dateFim,bot_name)
-        getBotsDashboardBarchart('qtde_per_department','chart4',dateIni,dateFim,bot_name)
-        getBotsDashboardBarchart('qtde_days_per_user','chart5',dateIni,dateFim,bot_name)
-        getBotsDashboardBarchart('qtde_total_bots','chart6',dateIni,dateFim,bot_name)
+        getBotsDashboardCardchart('qtde_not_end_per_bot','chart2',dateIni,dateFim,bot_name)
+        getBotsDashboardCardchart('qtde_days_per_bot','chart3',dateIni,dateFim,bot_name)
+        getBotsDashboardCardchart('qtde_per_department','chart4',dateIni,dateFim,bot_name)
+        getBotsDashboardPiechart('qtde_days_per_user','chart5',dateIni,dateFim,bot_name)
+        getBotsDashboardCardchart('qtde_total_bots','chart6',dateIni,dateFim,bot_name)
         getBotsDashboardPiechart('qtde_classification_bots','chart7',dateIni,dateFim,bot_name)
         getBotsDashboardPiechart('qtde_situation_bots','chart8',dateIni,dateFim,bot_name)
       }

@@ -222,6 +222,43 @@ function createPieChart(data,chart_id,title='Pie Chart') {
     });
 }
 
+function createCardChart(data, chartId, title = 'Total Value') {
+    var chartContainer = document.getElementById(`${chartId}_div`)
+     // Ensure this exists
+    if (!chartContainer) {
+        console.error('Chart container div not found');
+        return; // Exit if the container doesn't exist
+    }
+    var existingCanvas = document.getElementById(chartId);
+    if (existingCanvas) {
+        existingCanvas.remove() // Remove existing canvas if it exists
+    }
+    // Clear any existing content
+    chartContainer.innerHTML = '';
+
+    // Create the card elements
+    var card = document.createElement('div');
+    var cardTitle = document.createElement('div');
+    var cardValue = document.createElement('div');
+
+    // Assign classes for styling
+    card.id = chartId
+    card.className = 'dashboard-card';
+    cardTitle.className = 'card-title';
+    cardValue.className = 'card-value';
+
+    // Set the content
+    cardTitle.textContent = title;
+    const totalValue = data.values.reduce((acc, curr) => acc + curr, 0); // Calculate the total
+    cardValue.textContent = totalValue.toLocaleString(); // Format the number for readability
+
+    // Append the elements
+    card.appendChild(cardTitle);
+    card.appendChild(cardValue);
+    chartContainer.appendChild(card);
+
+}
+
 function buildBotsSelectConfigElements(data){
     var botsInfo = data
     var selectBotConfig = document.getElementById("bot_select_name");
