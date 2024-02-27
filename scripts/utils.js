@@ -25,7 +25,7 @@ function fetchWithRedundancy(urls, path, requestOptions) {
             }
             else if ([403, 401].includes(response.status)){
                     window.location.href = '../index.html';
-                    alert('Unauthorized or Unauthenticated!')
+                    //alert('Unauthorized or Unauthenticated!')
             }
             else{
                 throw new Error('Response not okay!');

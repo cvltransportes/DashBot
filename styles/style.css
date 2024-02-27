@@ -5,6 +5,7 @@
 @import url('execution.css');
 @import url('configuration.css');
 @import url('dashboard.css');
+@import url('deploy.css');
 
 :root{
     --image_background_login:url('../assets/login_page.png');

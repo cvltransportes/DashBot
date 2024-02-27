@@ -30,13 +30,35 @@
         <h1 class="header__title">
             <strong>Deploy</strong>
         </h1>
-        <section class="execution_content">
+        <section class="deploy_content">
+            <h2 class="deploy_subtitle">Clonar Repositórios do GitHub</h2>
+            <form class="deploy_filter_form" id="deploy_repo">
+                <div class="deploy_repo_div">
+                    <label class="deploy_bot_select_label" for="repos_select_name">Selecione o Repositório</label>
+                    <select class="deploy_filter_select" name="repos_select_name" id="repos_select_name">
+                        <option value=""></option>
+                    </select>
+                </div>
+                <input class="deploy_filter_input date_submit" type="submit" value="Deploy">
+            </form>
+            <div id="deploy_subtitle_terminal">
+                <h2>Terminal</h2>
+            </div>
+            <span class="deploy_terminal_output" id="deploy_output">
+            </span>
         </section>
     </main>
+    </div>
+    <div id="loading">
+        <div class="loader"></div>
     </div>
     <footer class="rodape">© 2024 cvltransportes</footer>
     <script src="../scripts/session.js"></script>
     <script src="../scripts/utils.js"></script>
-    <script src="../scripts/header.js"></script>         
+    <script src="../scripts/header.js"></script>
+    <script src="../scripts/loader.js"></script>
+    <script src="../scripts/deploy/deploy_body.js"></script>  
+    <script src="../scripts/deploy/deploy_events.js"></script>  
+    <script src="../scripts/deploy/deploy_fetches.js"></script>           
 </body>
 </html>

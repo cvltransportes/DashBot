@@ -1,0 +1,56 @@
+.deploy_content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 90%;
+}
+.deploy_subtitle{
+    margin-bottom: 2em;
+}
+.deploy_filter_form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 2em;
+}
+.deploy_repo_div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 1em;
+}
+.deploy_filter_select{
+    width: 15em;
+    height: 2em;
+    border: none;
+    border-radius: 10px;
+}
+
+.deploy_filter_input{
+    width: 10em;
+    border: none;
+    border-radius: 10px;
+}
+#deploy_subtitle_terminal{
+    margin-top: 2em;
+}
+#deploy_output{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 0.5em;
+}
+.deploy_terminal_output{
+    background-color: black;
+    border-radius: 15px;
+    padding: 0 20% 20%;
+    width: 20%;
+}
