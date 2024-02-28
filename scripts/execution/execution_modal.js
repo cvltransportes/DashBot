@@ -60,6 +60,7 @@ function buildBotsDescriptionElements(data){
     botDescription.innerText = botInfo[0].bot_description
     botDepartment.innerText = botInfo[0].bot_name.split('_')[1]
     botStart.value = botInfo[0].bot_name
+    botEnd.value = botInfo[0].bot_name
 
     if (botInfo[0].classification==='server'){
         botStart.disabled = false
@@ -80,6 +81,8 @@ function buildBotsDescriptionElements(data){
     deleteBotTasksElements()
 
     createBotTasksElements(botInfo)
+
+    clearBotOutput()
     
     botDetails.style.display = "block";
     
@@ -145,9 +148,9 @@ function setIntervalGetBotOutput(pid){
 
 function startBot(data){
     var bot_start = document.getElementById("start_bot");
-    var bot_end = document.getElementById("end_bot");
+    //var bot_end = document.getElementById("end_bot");
     bot_start.style.backgroundColor = 'green'
-    bot_end.value = data['PID']
+    //bot_end.value = data['PID']
     setIntervalGetBotOutput(data['PID'])
 }
 

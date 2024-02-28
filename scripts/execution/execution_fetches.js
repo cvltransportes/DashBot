@@ -57,7 +57,7 @@ function postStartBot(){
 
 function postEndBot(){
     var bot_end = document.getElementById("end_bot");
-    body = JSON.stringify({"pid":bot_end.value})
+    body = JSON.stringify({"bot_name":bot_end.value})
     console.log(body)
     bot_end.style.backgroundColor = 'red'
     fetchModel('POST','endBot',clearIntervalOutput,body)
