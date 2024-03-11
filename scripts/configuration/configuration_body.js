@@ -126,9 +126,10 @@ function onClickEditUser(event){
     document.getElementById('cpf').value = row[1].innerText
     document.getElementById('cpf').readOnly = true
     document.getElementById('domain').value = row[2].innerText
-    document.getElementById('unit').value = row[4].innerText
-    document.getElementById('username').value = row[5].innerText
+    document.getElementById('unit').value = row[5].innerText
+    document.getElementById('username').value = row[6].innerText
     document.getElementById('username').readOnly = true
+    document.getElementById('situation').value = row[4].innerText
     userForm.style.display='flex'
 
 }
