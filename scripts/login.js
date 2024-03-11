@@ -52,7 +52,7 @@ document.getElementById('signin-form').addEventListener('submit', function(event
     })
     .catch(error => {
         console.error('Error:', error);
-        window.location.href = './index.html'; // Redirect to login page
+        //window.location.href = './index.html'; // Redirect to login page
     })
     .finally(()=>hideLoaderLogin())
 });
